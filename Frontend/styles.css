@@ -1,0 +1,43 @@
+
+ul
+{
+    margin: 10px;
+    display:flex;
+}
+ul li
+{
+    width: fit-content;
+
+}
+ul.nav-bar
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    align-content:flex-start;
+    
+}
+.nav-bar li a
+{
+    display: inline-block;
+    font-size: 18px;
+    padding: 15px;
+    background-color: rgb(176, 180, 171);
+    
+}
+header
+{
+    height: max-content;
+    background-color: bisque;
+    border: 2px solid rgb(0, 0, 0);
+    margin: -11px;
+}
+a
+{
+    color: aqua;
+}
+.nav-bar li a:hover
+{
+    color: rgb(255, 255, 255);
+    background-color: rgb(123, 124, 122);
+}

@@ -1,0 +1,21 @@
+.armoury {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.armoury th, .armoury td {
+    border: 1px solid #030825;
+    padding: 8px;
+}
+
+.armoury tr:hover {
+    background-color: #3c3b37;
+}
+
+.armoury th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #694c17;
+    color: white;
+}

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router";
 import Navbar from "./components/Navbar";
 import { HomePage } from "./pages/Homepage";
-import Armoury from "./features/ArmouryPage";
+import Armoury from "./features/armoury/ArmouryPage";
 
 export default function App() {
   return (

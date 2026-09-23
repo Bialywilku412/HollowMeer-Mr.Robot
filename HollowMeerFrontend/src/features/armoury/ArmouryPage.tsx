@@ -1,4 +1,4 @@
-import ArmouryTable from "../components/ArmouryTable";
+import ArmouryTable from "../../components/ArmouryTable";
 export type Weapon = {
     name: string;
     type: string;
@@ -18,7 +18,8 @@ function Armoury() {
     return (
         <>
             <ArmouryTable
-                weapons={weapons}/>
+                weapons={weapons}
+            />
         </>
     );
 }

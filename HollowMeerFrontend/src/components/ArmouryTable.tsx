@@ -1,4 +1,4 @@
-import type { Weapon } from "../features/ArmouryPage";
+import type { Weapon } from "../features/armoury/ArmouryPage";
 import "../Armoury.css"
 
 type WeaponListProps = {

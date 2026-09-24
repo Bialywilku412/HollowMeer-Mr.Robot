@@ -60,16 +60,6 @@ li:hover, .dropdown-btn:hover {
     }
 
 
-
-
-
-
-
-
-
-
-
-
 @media (min-width: 768px) 
 {
 header
@@ -118,7 +108,8 @@ li a {
     align-items: center;
         color: white;
     }
-.dropdown-btn  {
+.dropdown-btn  
+{
         display: none;
     }
 

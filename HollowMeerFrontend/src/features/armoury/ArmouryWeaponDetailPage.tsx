@@ -14,7 +14,7 @@ function ArmouryWeaponDetailPage()
     return(
         <>
             <div className="weapon-detail">
-                <p><strong>Name:</strong>{weapon.type}</p>
+                <p><strong>Name:</strong>{weapon.name}</p>
                 <p><strong>Type:</strong>{weapon.type}</p>
                 <p><strong>Condtition:</strong>{weapon.condition}</p>
                 <p><strong>Dangerous:</strong>{weapon.dangerous ? "yes" : "no"}</p>

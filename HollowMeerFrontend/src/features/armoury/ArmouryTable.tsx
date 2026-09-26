@@ -1,5 +1,5 @@
 import { type Weapon } from "./weapons";
-import "../Armoury.css"
+import "./Armoury.css"
 import ArmouryRow from "./ArmouryTableRow";
 
 type WeaponListProps = {

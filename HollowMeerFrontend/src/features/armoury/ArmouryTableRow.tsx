@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import type { Weapon } from "../features/armoury/ArmouryPage";
+import { type Weapon } from "./weapons";
 
 type ArmouryRowProps = {
     data: Weapon

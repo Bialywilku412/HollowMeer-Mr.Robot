@@ -1,5 +1,4 @@
-import type { Weapon } from "../features/armoury/ArmouryPage";
-import { useNavigate } from "react-router";
+import { type Weapon } from "./weapons";
 import "../Armoury.css"
 import ArmouryRow from "./ArmouryTableRow";
 

@@ -1,6 +1,11 @@
 import { useNavigate } from "react-router";
+import type { Weapon } from "../features/armoury/ArmouryPage";
 
-function ArmouryRow({data: { id, name ,type, condition, dangerous, note }})
+type ArmouryRowProps = {
+    data: Weapon
+}
+
+function ArmouryRow({data: { id, name ,type, condition, dangerous, note }}: ArmouryRowProps)
 {
     const navigate = useNavigate();
 

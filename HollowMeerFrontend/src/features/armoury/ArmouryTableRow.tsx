@@ -5,7 +5,7 @@ type ArmouryRowProps = {
     data: Weapon
 }
 
-function ArmouryRow({data: { id, name ,type, condition, dangerous, note }}: ArmouryRowProps)
+function ArmouryRow({data: { id, name ,type, condition, isDangerous, note }}: ArmouryRowProps)
 {
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function ArmouryRow({data: { id, name ,type, condition, dangerous, note }}: Armo
             <td>{name}</td>
             <td>{type}</td>
             <td>{condition}</td>
-            <td>{dangerous ? "yes" : "no"}</td>
+            <td>{isDangerous ? "yes" : "no"}</td>
             <td>{note}</td>
         </tr>
     )

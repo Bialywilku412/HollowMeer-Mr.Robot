@@ -1,9 +1,18 @@
+import { useState } from "react";
 import ArmouryTable from "./ArmouryTable";
-import { weapons } from "./weapons";
+import { ArmouryWeaponForm } from "./ArmouryWeaponForm";
+import { weapons, type Weapon } from "./weapons";
 
 function Armoury() {
+    const [weapons, setWeapons] = useState()
+    function addWeapon() {
+
+    }
+
     return (
         <>
+            <ArmouryWeaponForm
+                onAdd={addWeapon}/>
             <ArmouryTable
                 weapons={weapons}
             />

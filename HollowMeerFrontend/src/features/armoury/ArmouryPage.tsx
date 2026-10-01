@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import ArmouryTable from "./ArmouryTable";
-import { ArmouryWeaponForm } from "./ArmouryWeaponForm";
 import { type Weapon } from "./weapons";
+import WeaponAddModal from "./ArmouryWeaponAddModal";
 
 function Armoury() {
 
     const [weapons, setWeapons] = useState<Weapon[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [showModal, setShowModal] = useState(false)
 
     async function addWeapon(newWeapon: Omit<Weapon, "id">) {
         try {
@@ -60,8 +61,12 @@ function Armoury() {
 
     return (
         <>
-            <ArmouryWeaponForm
-                onAdd={addWeapon}/>
+            <button onClick={() => setShowModal(true)}>Add</button>
+            <WeaponAddModal
+                show={showModal}
+                setShow={setShowModal}
+                onAdd={addWeapon}
+            />
             <ArmouryTable
                 weapons={weapons}
             />

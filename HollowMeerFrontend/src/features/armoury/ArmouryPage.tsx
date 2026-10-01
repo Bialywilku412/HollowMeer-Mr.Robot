@@ -18,7 +18,7 @@ function Armoury() {
             if (!response.ok) {
                 throw new Error(`Request failed with ${response.status}`);
             }
-            await fetchWeapons();
+
             setWeapons((prev) => [
                 ...prev,
                 { ...newWeapon, id: Math.max(0, ...prev.map((weapon) => weapon.id)) + 1 },

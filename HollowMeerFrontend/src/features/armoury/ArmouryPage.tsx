@@ -1,17 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ArmouryTable from "./ArmouryTable";
 import { ArmouryWeaponForm } from "./ArmouryWeaponForm";
-import { weapons, type Weapon } from "./weapons";
+import { type Weapon } from "./weapons";
 
 function Armoury() {
 
-    const [allWeapons, setAllWeapons] = useState(weapons)
+    const [weapons, setWeapons] = useState<Weapon[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     
     function addWeapon(newWeapon: Omit<Weapon, "id">) {
-        setAllWeapons((prev) => [
+        setWeapons((prev) => [
             ...prev,
             { ...newWeapon, id: Math.max(0, ...prev.map((weapon) => weapon.id)) + 1 },
         ]);
+    }
+
+    async function fetchWeapons() {
+        try {
+            const response = await fetch("/weapons.json");
+            if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`);
+            }
+            const data = await response.json();
+            setWeapons(data);
+        } catch (err) {
+            console.error(err);
+            setError("Could not load products. ");
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchWeapons();
+    },[]);
+
+    if (loading) {
+        return <p>Loading weapons...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
     }
 
     return (
@@ -19,7 +49,7 @@ function Armoury() {
             <ArmouryWeaponForm
                 onAdd={addWeapon}/>
             <ArmouryTable
-                weapons={allWeapons}
+                weapons={weapons}
             />
         </>
     );

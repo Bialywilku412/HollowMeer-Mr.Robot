@@ -59,6 +59,9 @@ export function ArmouryWeaponForm({ onAdd } : WeaponFormProps){
                         onChange={(e) => setNewWeapon({ ...newWeapon, note: e.target.value })}
                     />
                 </label>
+                <label>
+                    <button type="submit">add</button>
+                </label>
             </form>
         </>
     );

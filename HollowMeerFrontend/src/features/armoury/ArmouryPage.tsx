@@ -4,7 +4,6 @@ import { ArmouryWeaponForm } from "./ArmouryWeaponForm";
 import { weapons, type Weapon } from "./weapons";
 
 function Armoury() {
-    const [weapons, setWeapons] = useState()
     function addWeapon() {
 
     }

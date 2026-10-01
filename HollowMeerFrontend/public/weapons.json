@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Excalibur", "type": "sword", "condition": "bad", "isDangerous": true, "note": "aaaasadsadq" },
+    { "id": 2, "name": "Fire bow", "type": "bow", "condition": "good", "isDangerous": true, "note": "aaaawqd" },
+    { "id": 3, "name": "Mace", "type": "club", "condition": "not bad", "isDangerous": false, "note": "aaaaqwd" },
+    { "id": 4, "name": "Shield", "type": "shield", "condition": "horrible", "isDangerous": false, "note": "aaaascqwa" }
+]

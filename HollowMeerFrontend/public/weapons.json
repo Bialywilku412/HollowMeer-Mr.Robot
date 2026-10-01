@@ -2,5 +2,21 @@
     { "id": 1, "name": "Excalibur", "type": "sword", "condition": "bad", "isDangerous": true, "note": "aaaasadsadq" },
     { "id": 2, "name": "Fire bow", "type": "bow", "condition": "good", "isDangerous": true, "note": "aaaawqd" },
     { "id": 3, "name": "Mace", "type": "club", "condition": "not bad", "isDangerous": false, "note": "aaaaqwd" },
-    { "id": 4, "name": "Shield", "type": "shield", "condition": "horrible", "isDangerous": false, "note": "aaaascqwa" }
+    { "id": 4, "name": "Shield", "type": "shield", "condition": "horrible", "isDangerous": false, "note": "aaaascqwa" },
+    { "id": 5, "name": "Frostbite", "type": "dagger", "condition": "excellent", "isDangerous": true, "note": "zzzzqwer" },
+    { "id": 6, "name": "Thunder axe", "type": "axe", "condition": "good", "isDangerous": true, "note": "bbbbasdf" },
+    { "id": 7, "name": "Dragonfang", "type": "sword", "condition": "worn", "isDangerous": true, "note": "ccccqwer" },
+    { "id": 8, "name": "Longshot", "type": "bow", "condition": "bad", "isDangerous": false, "note": "ddddqwer" },
+    { "id": 9, "name": "Skullcrusher", "type": "club", "condition": "horrible", "isDangerous": true, "note": "eeeeqwer" },
+    { "id": 10, "name": "Guardian wall", "type": "shield", "condition": "excellent", "isDangerous": false, "note": "ffffqwer" },
+    { "id": 11, "name": "Shadowstrike", "type": "dagger", "condition": "good", "isDangerous": true, "note": "gggg qwer" },
+    { "id": 12, "name": "Stormcaller", "type": "axe", "condition": "not bad", "isDangerous": true, "note": "hhhhqwer" },
+    { "id": 13, "name": "Moonlight blade", "type": "sword", "condition": "excellent", "isDangerous": true, "note": "iiiiqwer" },
+    { "id": 14, "name": "Windpiercer", "type": "bow", "condition": "good", "isDangerous": false, "note": "jjjjqwer" },
+    { "id": 15, "name": "Ironfist", "type": "club", "condition": "bad", "isDangerous": false, "note": "kkkkqwer" },
+    { "id": 16, "name": "Aegis", "type": "shield", "condition": "worn", "isDangerous": false, "note": "llllqwer" },
+    { "id": 17, "name": "Venomtooth", "type": "dagger", "condition": "horrible", "isDangerous": true, "note": "mmmmqwer" },
+    { "id": 18, "name": "Doomsplitter", "type": "axe", "condition": "excellent", "isDangerous": true, "note": "nnnnqwer" },
+    { "id": 19, "name": "Sunfire", "type": "sword", "condition": "good", "isDangerous": true, "note": "oooo qwer" },
+    { "id": 20, "name": "Nightwatcher", "type": "bow", "condition": "not bad", "isDangerous": false, "note": "pppp qwer" }
 ]

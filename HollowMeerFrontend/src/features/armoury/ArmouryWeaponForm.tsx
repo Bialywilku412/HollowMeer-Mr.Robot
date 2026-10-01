@@ -21,8 +21,8 @@ export function ArmouryWeaponForm({ onAdd } : WeaponFormProps){
     
     return(
         <>
-            <form onSubmit={handleSubmit}>
-                <label>
+            <form onSubmit={handleSubmit} className="add-form">
+                <label> Weapon name
                     <input
                         type="text"
                         value={newWeapon.name}

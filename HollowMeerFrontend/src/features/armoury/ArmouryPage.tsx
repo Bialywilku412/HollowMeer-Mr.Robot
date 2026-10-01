@@ -8,12 +8,27 @@ function Armoury() {
     const [weapons, setWeapons] = useState<Weapon[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    
-    function addWeapon(newWeapon: Omit<Weapon, "id">) {
-        setWeapons((prev) => [
-            ...prev,
-            { ...newWeapon, id: Math.max(0, ...prev.map((weapon) => weapon.id)) + 1 },
-        ]);
+
+    async function addWeapon(newWeapon: Omit<Weapon, "id">) {
+        try {
+            const response = await fetch("/weapons.json", {
+                method: "POST",
+                body: JSON.stringify(newWeapon)
+            });
+            if (!response.ok) {
+                throw new Error(`Request failed with ${response.status}`);
+            }
+            await fetchWeapons();
+            setWeapons((prev) => [
+                ...prev,
+                { ...newWeapon, id: Math.max(0, ...prev.map((weapon) => weapon.id)) + 1 },
+            ])
+        } catch (err) {
+            console.error(err);
+            setError("Could not add weapon")
+        } finally {
+            setLoading(false);
+        }
     }
 
     async function fetchWeapons() {

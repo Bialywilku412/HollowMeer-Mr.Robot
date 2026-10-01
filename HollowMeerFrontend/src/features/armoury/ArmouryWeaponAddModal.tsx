@@ -15,12 +15,15 @@ export default function WeaponAddModal({ show, setShow, onAdd }) {
                     setShow(false);
                     }}
                 >
-                    <div style={{ backgroundColor: "purple"}} ref={modalRef}>
-                        <h1>My modalRef</h1>
-                        <ArmouryWeaponForm
-                            onAdd={onAdd}
-                        />
-                        <button onClick={() => setShow(false)}> close </button>
+                    <div className="weapon-modal" style={{ backgroundColor: "gray"}} ref={modalRef}>
+                        <h1>Adding weapon</h1>
+                        <div className="weapon-modal-form">
+                            <ArmouryWeaponForm
+                                onAdd={onAdd}
+                                setShow={setShow}
+                            />
+                        </div>
+                        <button className="close-btn" onClick={() => setShow(false)}> close </button>
                     </div>
                 </div>
             ) : (

@@ -1,7 +1,5 @@
-import { useNavigate } from "react-router";
 import type { Weapon } from "./weapons";
 import { useState, type FormEvent } from "react";
-import Navbar from "../../components/Navbar";
 
 type WeaponFormProps = {
     onAdd: (weapon: Omit<Weapon, "id">) => void

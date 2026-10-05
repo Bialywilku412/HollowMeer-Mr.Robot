@@ -1,43 +1,84 @@
-import { useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import type { Weapon } from "./weapons";
 
+type WeaponResponse = {
+    id: number;
+    name: string;
+    type: string;
+    condition: string
+    isDangerous: boolean;
+    note: string;
+}
 
 function ArmouryWeaponDetailPage()
 {
-    const {weaponId} = useParams();
-    const [weapons, setWeapons] = useState<Weapon[]>([]);
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [weapon, setWeapon] = useState<Weapon | null>(null);
     const [error, setError] = useState<null | string>(null);
     const [loading, setLoading] = useState(true);
 
-    async function fetchWeapons() {
+    async function loadWeapon() {
         try {
-            const response = await fetch("/weapons.json");
+            const response = await fetch(`/weapons.json`);
             if (!response.ok) {
                 throw new Error(`Request failed with status ${response.status}`);
             }
-            const data = await response.json();
-            setWeapons(data);
+            const data: WeaponResponse[] = await response.json();
+            const found = data.find((w) => w.id === Number(id));
+
+            if (!found) {
+                setError("Weapon not found.");
+                return;
+            }
+
+            setWeapon({
+                id: found.id,
+                name: found.name,
+                type: found.type,
+                condition: found.condition,
+                isDangerous: found.isDangerous,
+                note: found.note,
+            });
         } catch (err) {
             console.error(err);
-            setError("Could not load products. ");
+            setError("Could not load this weapon.");
         } finally {
             setLoading(false);
         }
     }
 
     useEffect(() => {
-        fetchWeapons();
-    }, [])
+        loadWeapon();
+    }, [id]);
 
-    const weapon = weapons.find((w) => w.id === Number(weaponId));
-
-    if (!weapon) {
-        return <p>Weapon not found</p>;
+    async function deleteWeapon(id: number) {
+        try {
+            const response = await fetch("/weapons.json", {
+                method: "DELETE",
+                body: JSON.stringify({ id })
+            });
+            if (!response.ok) {
+                throw new Error(`Request failed with ${response.status}`);
+            }
+        } catch (err) {
+            console.error(err);
+            setError("Couldn't delete weapon");
+        } finally {
+            setLoading(false);
+        }
     }
 
-    if (error) {
-        return <p>{error}</p>;
+    function onDelete() {
+        if (weapon) {
+            deleteWeapon(weapon.id);
+        }
+        navigate("/armoury");
+    }
+
+    if (error || !weapon) {
+        return <p>{error ?? "Weapon not found."}</p>;
     }
 
     if (loading) {
@@ -53,6 +94,8 @@ function ArmouryWeaponDetailPage()
                 <p><strong>Dangerous:</strong>{weapon.isDangerous ? "yes" : "no"}</p>
                 <p><strong>Note:</strong>{weapon.note}</p>
             </div>
+            <Link to="/armoury">Back to weapons</Link>
+            <button onClick={onDelete}>delete</button>
         </>
     );
 }

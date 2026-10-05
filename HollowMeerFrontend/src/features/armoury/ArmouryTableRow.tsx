@@ -18,7 +18,9 @@ function ArmouryRow({data: { id, name ,type, condition, isDangerous, note }}: Ar
             <td>{name}</td>
             <td>{type}</td>
             <td>{condition}</td>
-            <td>{isDangerous ? "yes" : "no"}</td>
+            <td className="dangerous" data-dangerous={isDangerous}>
+                {isDangerous ? "yes" : "no"}
+            </td>
             <td>{note}</td>
         </tr>
     )

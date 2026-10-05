@@ -27,7 +27,7 @@ function Navbar() {
                     <li><a href="login.html">Beastiary</a></li>
                     <li><a href="register.html">Locations</a></li>
                     <li><Link to="/armoury">Armoury</Link></li>
-                    <li><a href="login.html">Over us</a></li>
+                    <li><Link to="/quest">Over us</Link></li>
                     <li><a href="register.html">Members</a></li>
                 </ul>
             </nav>

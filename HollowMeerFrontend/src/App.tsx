@@ -3,7 +3,9 @@ import { HomePage } from "./pages/Homepage";
 import Armoury from "./features/armoury/ArmouryPage";
 import ArmouryWeaponDetailPage from "./features/armoury/ArmouryWeaponDetailPage";
 import { Layout } from "./components/Layout";
-import { NotFoundPage } from "./pages/NotFoundPage";
+import { NotFoundPage } from "./components/NotFoundPage";
+import BeastiaryPage from "./features/beastiary/BeastiaryPage";
+import BeastiaryDetailPage from "./features/beastiary/BeastiaryDetailPage";
 
 export default function App() {
   return (
@@ -12,6 +14,8 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="armoury" element={<Armoury />} />
           <Route path="armoury/:id" element={<ArmouryWeaponDetailPage />} />
+          <Route path="beastiary" element={<BeastiaryPage />}/>
+          <Route path="beastiary/:id" element={<BeastiaryDetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
     </Routes>

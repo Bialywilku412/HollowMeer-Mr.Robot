@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Meerhoornslang">
+<title>Meerhoornslang</title>
+<defs>
+<radialGradient id="bg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#efe3c6"/><stop offset="1" stop-color="#cbb98f"/></radialGradient>
+<filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<g filter="url(#rough)" stroke-linejoin="round" stroke-linecap="round">
+<g fill="#bfae8c" opacity="0.7"><ellipse cx="110" cy="62" rx="80" ry="22"/><ellipse cx="180" cy="48" rx="70" ry="20"/><ellipse cx="320" cy="64" rx="60" ry="18"/></g>
+<path d="M214 44 L198 92 L214 92 L192 138" stroke="#b1532f" stroke-width="3" fill="none"/>
+<path d="M60 300 C80 232 140 232 160 300" fill="none" stroke="#171210" stroke-width="36"/>
+<path d="M60 300 C80 232 140 232 160 300" fill="none" stroke="#4f6b5c" stroke-width="28"/>
+<path d="M200 300 C205 224 250 232 262 164 C270 126 288 114 298 100" fill="none" stroke="#171210" stroke-width="36"/>
+<path d="M200 300 C205 224 250 232 262 164 C270 126 288 114 298 100" fill="none" stroke="#4f6b5c" stroke-width="28"/>
+<ellipse cx="312" cy="92" rx="30" ry="17" transform="rotate(-28 312 92)" fill="#4f6b5c" stroke="#171210" stroke-width="3"/>
+<path d="M304 78 Q298 48 318 32 Q316 56 320 76 Z" fill="#d8ccb0" stroke="#171210" stroke-width="2.5"/>
+<path d="M324 84 Q334 60 354 58 Q342 72 336 90 Z" fill="#d8ccb0" stroke="#171210" stroke-width="2.5"/>
+<circle cx="320" cy="88" r="4" fill="#b1532f"/>
+<path d="M17 292 Q60 276 100 292 T180 292 T260 292 T340 292 T383 292 V383 H17 Z" fill="#2f4a46" stroke="#171210" stroke-width="2.5"/>
+<path d="M36 316 Q64 306 92 316 T150 316 M196 336 Q226 326 256 336 T316 336 M60 356 Q90 346 120 356" stroke="#bfae8c" stroke-width="2" fill="none" opacity="0.6"/>
+<g fill="#bfae8c" opacity="0.9"><circle cx="38" cy="276" r="3"/><circle cx="170" cy="266" r="3"/><circle cx="196" cy="276" r="2.5"/><circle cx="272" cy="262" r="2.5"/></g>
+
+</g>
+<rect x="10" y="10" width="380" height="380" fill="none" stroke="#8a6d3b" stroke-width="2"/>
+<rect x="17" y="17" width="366" height="366" fill="none" stroke="#8a6d3b" stroke-width="0.8" opacity="0.7"/>
+</svg>

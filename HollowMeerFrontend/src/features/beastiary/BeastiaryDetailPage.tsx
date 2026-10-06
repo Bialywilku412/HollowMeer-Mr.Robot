@@ -86,10 +86,12 @@ function BeastiaryDetailPage()
     return(
         <>
             <div className="weapon-detail">
-                <p><strong>Name:</strong>{beast.name}</p>
-                <p><strong>Region:</strong>{beast.region}</p>
-                <p><strong>Description:</strong>{beast.description}</p>
-                <p><strong>Drawing:</strong>{beast.drawing ? "yes" : "no"}</p>
+                <p><strong>Name: </strong>{beast.name}</p>
+                <p><strong>Region: </strong>{beast.region}</p>
+                <p><strong>Description: </strong>{beast.description}</p>
+                {beast && (
+                    <img src={beast.drawing ?? undefined} alt={beast.name} />
+                )}
             </div>
             <Link to="/beastiary">Back to beastiary</Link>
             <button onClick={onDelete}>delete</button>

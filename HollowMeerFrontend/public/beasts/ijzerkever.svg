@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Ijzerkever">
+<title>Ijzerkever</title>
+<defs>
+<radialGradient id="bg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#efe3c6"/><stop offset="1" stop-color="#cbb98f"/></radialGradient>
+<filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<g filter="url(#rough)" stroke-linejoin="round" stroke-linecap="round">
+<g stroke="#171210" stroke-width="6" fill="none"><path d="M152 190 L100 162 L70 192"/><path d="M146 220 L92 222 L64 254"/><path d="M152 252 L108 278 L90 316"/><path d="M248 190 L300 162 L330 192"/><path d="M254 220 L308 222 L336 254"/><path d="M248 252 L292 278 L310 316"/></g>
+<ellipse cx="200" cy="236" rx="74" ry="96" fill="#4a4540" stroke="#171210" stroke-width="3.5"/>
+<path d="M200 142 V330" stroke="#171210" stroke-width="2.5"/>
+<path d="M135 205 Q200 190 265 205 M130 246 Q200 232 270 246 M138 286 Q200 274 262 286" fill="none" stroke="#171210" stroke-width="2" opacity="0.7"/>
+<path d="M150 192 Q140 244 160 304" stroke="#b9a37a" stroke-width="6" opacity="0.5" fill="none"/>
+<g fill="#8a6d3b" stroke="#171210" stroke-width="1.2"><circle cx="150" cy="215" r="3.2"/><circle cx="250" cy="215" r="3.2"/><circle cx="145" cy="258" r="3.2"/><circle cx="255" cy="258" r="3.2"/><circle cx="160" cy="298" r="3.2"/><circle cx="240" cy="298" r="3.2"/></g>
+<g fill="#b1532f"><circle cx="228" cy="188" r="3"/><circle cx="178" cy="270" r="2.4"/><circle cx="222" cy="300" r="2.8"/></g>
+<path d="M150 152 Q200 118 250 152 Q245 172 200 174 Q155 172 150 152 Z" fill="#5a544d" stroke="#171210" stroke-width="3"/>
+<ellipse cx="200" cy="116" rx="26" ry="18" fill="#3a352f" stroke="#171210" stroke-width="3"/>
+<path d="M184 104 Q174 88 190 83 M216 104 Q226 88 210 83" stroke="#171210" stroke-width="4" fill="none"/>
+<path d="M190 102 Q166 70 148 76 M210 102 Q234 70 252 76" stroke="#171210" stroke-width="2.5" fill="none"/>
+<circle cx="187" cy="118" r="3.5" fill="#b1532f"/><circle cx="213" cy="118" r="3.5" fill="#b1532f"/>
+
+</g>
+<rect x="10" y="10" width="380" height="380" fill="none" stroke="#8a6d3b" stroke-width="2"/>
+<rect x="17" y="17" width="366" height="366" fill="none" stroke="#8a6d3b" stroke-width="0.8" opacity="0.7"/>
+</svg>

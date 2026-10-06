@@ -4,14 +4,14 @@
     "name": "Mistkruiper",
     "region": "Hollowmere Moeras",
     "description": "Een langwerpig, grijs wezen dat zich in de ochtendmist verbergt en reizigers van het pad lokt met een zacht gefluister. Het valt zelden aan, maar wie het volgt, wordt zelden teruggezien.",
-    "drawing": "/creatures/mistkruiper.png"
+    "drawing": "/beasts/mistkruiper.svg"
   },
   {
     "id": 2,
     "name": "Veenwolf",
     "region": "Hollowmere Moeras",
     "description": "Een magere wolf met een vacht die eruitziet als nat veen. Veenwolven jagen in roedels van vier tot zes en zijn berucht om hun geduld: ze volgen een prooi soms dagenlang.",
-    "drawing": "/creatures/veenwolf.png"
+    "drawing": "/beasts/veenwolf.svg"
   },
   {
     "id": 3,
@@ -25,7 +25,7 @@
     "name": "Grafwachter",
     "region": "Vergeten Kerkhof",
     "description": "Een skeletachtige ridder die zijn post nooit heeft verlaten. Hij valt alleen aan wie een graf aanraakt en verdwijnt bij zonsopkomst, tot de volgende nacht.",
-    "drawing": "/creatures/grafwachter.png"
+    "drawing": "/beasts/grafwachter.svg"
   },
   {
     "id": 5,
@@ -39,14 +39,14 @@
     "name": "Ijzerkever",
     "region": "Smeedheuvels",
     "description": "Een kever met een pantser van erts, groot als een schildpad. Smeden betalen goed voor zijn schilden, maar het dier slaat hard terug als je zijn nest verstoort.",
-    "drawing": "/creatures/ijzerkever.png"
+    "drawing": "/beasts/ijzerkever.svg"
   },
   {
     "id": 7,
     "name": "Asdraak",
     "region": "Smeedheuvels",
     "description": "Een jonge draak die in verlaten smeden woont en zich voedt met gloeiend as. Hij is kleiner dan zijn soortgenoten, maar zijn adem blijft gevaarlijk genoeg om een gildepoort te smelten.",
-    "drawing": "/creatures/asdraak.png"
+    "drawing": "/beasts/asdraak.svg"
   },
   {
     "id": 8,
@@ -60,7 +60,7 @@
     "name": "Meerhoornslang",
     "region": "Het Diepe Meer",
     "description": "Een gigantische watersslang met twee hoorns van been. Ze verschijnt bij onweer aan het oppervlak en wordt door vissers gezien als een voorteken van een slechte vangst.",
-    "drawing": "/creatures/meerhoornslang.png"
+    "drawing": "/beasts/meerhoornslang.svg"
   },
   {
     "id": 10,
@@ -74,14 +74,14 @@
     "name": "Schaduwmarter",
     "region": "Fluisterbos",
     "description": "Een snelle marter met een vacht die licht lijkt op te zuigen. Hij steelt kleine voorwerpen uit kampen en laat in ruil een zwarte veer achter.",
-    "drawing": "/creatures/schaduwmarter.png"
+    "drawing": "/beasts/schaduwmarter.svg"
   },
   {
     "id": 12,
     "name": "Eikenhoeder",
     "region": "Fluisterbos",
     "description": "Een oeroude boomgeest die de rand van het bos bewaakt. Hij laat reizigers passeren die een gift achterlaten en dwingt de rest om terug te keren.",
-    "drawing": "/creatures/eikenhoeder.png"
+    "drawing": "/beasts/eikenhoeder.svg"
   },
   {
     "id": 13,
@@ -95,7 +95,7 @@
     "name": "Mijnkobold",
     "region": "Verlaten Mijnen",
     "description": "Een klein, bijdehand wezen met een gesel van tin. Kobolden lokken mijnwerkers met valse echo's naar instortingsgevaarlijke gangen, maar ruilen graag een kaart voor een stuk brood.",
-    "drawing": "/creatures/mijnkobold.png"
+    "drawing": "/beasts/mijnkobold.svg"
   },
   {
     "id": 15,

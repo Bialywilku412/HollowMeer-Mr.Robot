@@ -4,6 +4,7 @@ import Armoury from "./features/armoury/ArmouryPage";
 import ArmouryWeaponDetailPage from "./features/armoury/ArmouryWeaponDetailPage";
 import { Layout } from "./components/Layout";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import Archive from "./features/archive/Archive";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="armoury" element={<Armoury />} />
+          <Route path="archive" element={<Archive />} />
           <Route path="armoury/:id" element={<ArmouryWeaponDetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

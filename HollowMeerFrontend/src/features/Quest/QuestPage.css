@@ -1,0 +1,15 @@
+.quest-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 8px;
+
+}
+.quest-card {
+    background-color: #845124;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(30% - 50px);
+
+}

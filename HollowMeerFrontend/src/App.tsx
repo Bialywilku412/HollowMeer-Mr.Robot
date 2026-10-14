@@ -6,6 +6,7 @@ import { Layout } from "./components/Layout";
 import { NotFoundPage } from "./components/NotFoundPage";
 import BeastiaryPage from "./features/beastiary/BeastiaryPage";
 import BeastiaryDetailPage from "./features/beastiary/BeastiaryDetailPage";
+import{ QuestPage} from "./features/Quest/QuestPage";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="armoury/:id" element={<ArmouryWeaponDetailPage />} />
           <Route path="beastiary" element={<BeastiaryPage />}/>
           <Route path="beastiary/:id" element={<BeastiaryDetailPage />} />
+          <Route path="quests" element ={<QuestPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
     </Routes>

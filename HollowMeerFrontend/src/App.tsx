@@ -4,7 +4,7 @@ import Armoury from "./features/armoury/ArmouryPage";
 import ArmouryWeaponDetailPage from "./features/armoury/ArmouryWeaponDetailPage";
 import { Layout } from "./components/Layout";
 import { NotFoundPage } from "./pages/NotFoundPage";
-import Archive from "./features/archive/Archive";
+import Archive from "./features/archive/ArchivePage";
 
 export default function App() {
   return (

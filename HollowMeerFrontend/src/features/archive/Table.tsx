@@ -1,42 +1,38 @@
 import "./Table.css";
+import type { Report } from "./reports";
 
-const Table = () => {
+type TableProps = {
+    reports: Report[];
+    onEdit: (report: Report) => void;
+    onDelete: (report: Report) => void;
+};
+
+const Table = ({ reports, onEdit, onDelete }: TableProps) => {
     const headers = [
         {
             id: 1,
-            key: "QUEST" as const,
+            key: "questName" as const,
             label: "Quest"
         },
         {
             id: 2,
-            key: "REGION" as const,
+            key: "region" as const,
             label: "Region"
         },
         {
             id: 3,
-            key: "DEPARTURE" as const,
+            key: "departure" as const,
             label: "Departure"
         },
         {
             id: 4,
-            key: "STATUS" as const,
+            key: "status" as const,
             label: "Status"
         },
         {
             id: 5,
-            key: "ACTIONS" as const,
+            key: "action" as const,
             label: "Actions"
-        }
-    ];
-
-    const data = [
-        {
-            ID: 1,
-            QUEST: "Slay the beasts",
-            REGION: "South-America",
-            DEPARTURE: new Date("2026-10-05"),
-            STATUS: "Completed",
-            ACTIONS: "View"
         }
     ];
 
@@ -53,12 +49,25 @@ const Table = () => {
             </thead>
 
             <tbody>
-                {data.map((row, index) => (
+                {reports.map((row, index) => (
                     <tr key={index}>
                         {headers.map((header, index) => {
                             return (
                                 <td key={header.id}>
                                     {(() => {
+                                        { 
+                                            if (header.key === "action") {
+                                                if (row.status === "Draft") {
+                                                    return (
+                                                        <div>
+                                                            <button className="table-button edit-button" onClick={() => onEdit(row)}>Edit</button>
+                                                            <button className="table-button delete-button" onClick={() => onDelete(row)}>Delete</button>
+                                                        </div>
+                                                    );
+                                                }
+                                                return "-";
+                                            } 
+                                        }
                                         const value = row[header.key];
                                         return value instanceof Date
                                             ? value.toLocaleDateString("en-GB").replaceAll("/", "-")

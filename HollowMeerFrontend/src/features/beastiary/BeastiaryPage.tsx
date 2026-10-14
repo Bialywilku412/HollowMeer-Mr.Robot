@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Beast } from "../../types/Beast";
 import BeastiaryTable from "./BeastiaryTabel";
 import BeastAddModal from "./BeastiaryAddModal";
+import "../armoury/Armoury.css";
 
 function BeastiaryPage() {
     const [beasts, setBeasts] = useState<Beast[]>([])

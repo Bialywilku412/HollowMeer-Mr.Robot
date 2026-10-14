@@ -14,7 +14,7 @@ function BeastRow({data: { id, name ,region, description, drawing}}: BeastRowPro
     }
     
     return(     
-        <tr onClick={navigateToWeapon}>
+        <tr className="row" onClick={navigateToWeapon}>
             <td>{name}</td>
             <td>{region}</td>
             <td>{description}</td>

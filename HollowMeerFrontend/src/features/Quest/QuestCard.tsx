@@ -14,8 +14,12 @@ export function QuestCard({quest, onDelete, onEdit} :QuestCardProps)
         <p><strong>Host:</strong> {quest.host}</p>
         <p><strong>Description:</strong> {quest.description}</p>
         <p><strong>Date:</strong> {quest.date} days</p>
-        <button onClick={() => onEdit(quest)}>Edit</button>
-        <button onClick={() => onDelete(quest.id)}>Delete</button>
+        <button className="edit-button" onClick={() => onEdit(quest)}>
+            Edit
+        </button>
+        <button className="delete-button" onClick={() => onDelete(quest.id)}>
+            Delete
+        </button>
     </div>
     );
 }

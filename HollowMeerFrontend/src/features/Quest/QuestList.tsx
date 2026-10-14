@@ -8,12 +8,12 @@ type QuestListProps =
  onDelete: (id: number) => void;
 };
 
-export function QuestList({quests} :QuestListProps)
+export function QuestList({quests, onDelete, onEdit} :QuestListProps)
 {
     return(
         <div>
                      {quests.map((product) => (
-                <QuestCard key={product.id} quest={product} />
+                <QuestCard key={product.id} quest={product} onDelete={onDelete} onEdit={onEdit} />
                 
             ))}
         </div>

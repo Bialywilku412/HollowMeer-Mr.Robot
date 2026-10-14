@@ -13,3 +13,20 @@
     width: calc(30% - 50px);
 
 }
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.quest-card .delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}

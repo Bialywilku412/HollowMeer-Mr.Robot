@@ -4,6 +4,8 @@ import { QuestCard } from "./QuestCard";
 type QuestListProps =
 {
  quests: Quest[];
+ onEdit: (quest: Quest) => void;
+ onDelete: (id: number) => void;
 };
 
 export function QuestList({quests} :QuestListProps)

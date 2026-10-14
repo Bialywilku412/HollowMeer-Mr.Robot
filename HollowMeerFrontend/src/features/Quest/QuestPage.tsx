@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./QuestPage.css"
 import { type Quest } from "./Quest";
 import { QuestList } from "./QuestList";
+import { QuestForm } from "./QuestForm";
 
 
 export function QuestPage()
@@ -9,6 +10,7 @@ export function QuestPage()
 const [quests, setQuests] = useState<Quest[]>([]);
 const [loading, setLoading] =useState(true);
 const [error, setError] = useState<string | null>(null);
+const [editingQuest, setEditingQuest] = useState<Quest | null>(null);
 
 {
     useEffect(() => 
@@ -38,13 +40,51 @@ const [error, setError] = useState<string | null>(null);
         }, []);
 
 
+        function onAdd(name: string, host: string , description: string, date: string)
+        {
+            const id = setQuests.length + 1;
+            const newQuest = { id, name, host, description, date}
+
+            setQuests([...quests, newQuest]);
+        }
+        function onUpdate(updated: Quest)
+        {
+            setQuests(quests.map((q) => (q.id === updated.id ? updated: q)));
+            setEditingQuest(null);
+
+        }
+        function startEditing(quest: Quest)
+        {
+            setEditingQuest(quest);
+        }
+        function onCancel()
+        {
+            setEditingQuest(null);
+        }
+        function deleteProduct(id: number)
+        {
+            setQuests(quests.filter((q) => q.id !== id))
+        }
+
+
 
 
     return (
         <div>
             <h1>Quest Page</h1>
             <p>Welcome to the Quest Page!</p>
-            <QuestList quests={quests}/>
+            <QuestList 
+            quests={quests}
+            onEdit={startEditing}
+            onDelete={deleteProduct}
+            />
+            <QuestForm
+            key={editingQuest?.id ?? "new"}
+            editingQuest={editingQuest}
+            onAdd={onAdd}
+            onUpdate={onUpdate}
+            onCancel={onCancel}
+             />
             
         </div>
     );

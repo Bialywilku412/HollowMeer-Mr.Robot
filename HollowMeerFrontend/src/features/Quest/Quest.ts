@@ -1,7 +1,7 @@
 export type Quest = {
     id: number;
     name: string;
-    Host: string;
+    host: string;
     description: string;
-    Date: string;
+    date: string;
 }

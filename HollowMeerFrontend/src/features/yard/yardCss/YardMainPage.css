@@ -1,0 +1,32 @@
+.yard-page-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.yard-card {
+    display: flex; /* makes ellementsss be left to right, istead of top to down*/
+
+    gap: 1.5rem; /* distance between stuff within */
+    padding: 1.5rem; /* from walls */
+    margin-bottom: 1.5rem; /* between cards*/
+    
+    background: black;
+    font-family: 'Spectral', Georgia, serif;
+    color: beige;
+}
+
+.yard-image {
+    width: 150px;
+    height: 150px;
+}
+
+.yard-card-content {
+    display: flex;
+    flex-direction: column;
+}
+    
+.yard-card-content button {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}

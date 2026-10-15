@@ -6,7 +6,10 @@ import { Layout } from "./components/Layout";
 import { NotFoundPage } from "./components/NotFoundPage";
 import BeastiaryPage from "./features/beastiary/BeastiaryPage";
 import BeastiaryDetailPage from "./features/beastiary/BeastiaryDetailPage";
-import{ QuestPage} from "./features/Quest/QuestPage";
+import { QuestPage } from "./features/Quest/QuestPage";
+import { YardPage } from "./features/yard/YardPage";
+import { YardScheduling } from "./features/yard/YardScheduling";
+import { YardScheduleDayDetailPage } from "./features/yard/YardScheduleDayDetailPage";
 
 export default function App() {
   return (
@@ -18,6 +21,11 @@ export default function App() {
           <Route path="beastiary" element={<BeastiaryPage />}/>
           <Route path="beastiary/:id" element={<BeastiaryDetailPage />} />
           <Route path="quests" element ={<QuestPage />} />
+          
+          <Route path="yard" element={<YardPage />} />
+          <Route path="yard/YardScheduling" element={<YardScheduling />} />
+          <Route path="yard/:id" element={<YardScheduleDayDetailPage />} />
+          
           <Route path="*" element={<NotFoundPage />} />
         </Route>
     </Routes>

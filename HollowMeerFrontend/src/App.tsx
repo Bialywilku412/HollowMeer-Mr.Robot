@@ -13,6 +13,7 @@ import { YardScheduleDayDetailPage } from "./features/yard/YardScheduleDayDetail
 import { QuartermasterFunctions } from "./features/yard/QuartermasterFunctions";
 import { YardBooking } from "./features/yard/YardBooking";
 import Archive from "./features/archive/ArchivePage";
+import {Locations} from "./pages/Locations"
 
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="beastiary" element={<BeastiaryPage />}/>
           <Route path="beastiary/:id" element={<BeastiaryDetailPage />} />
           <Route path="quests" element ={<QuestPage />} />
+          <Route path="locations" element = {<Locations/>} />
           
           <Route path="yard" element={<YardPage />} />
           <Route path="yard/YardScheduling" element={<YardScheduling />} />

@@ -25,7 +25,7 @@ function Navbar() {
                 </button>
                 <ul className={`navbar-list ${menuOpen ? 'show' : ''}`}>
                     <li><Link to="/beastiary">Beastiary</Link></li>
-                    <li><a href="register.html">Locations</a></li>
+                    <li><a href="/locations">Locations</a></li>
                     <li><Link to="/armoury">Armoury</Link></li>
                     <li><Link to="/quests">Quests</Link></li>
                     <li><Link to="/archive">Archive</Link></li>

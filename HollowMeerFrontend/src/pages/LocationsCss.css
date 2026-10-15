@@ -1,0 +1,22 @@
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px;
+    max-width: 400px; 
+    margin: 40px auto;
+}
+
+.locations-grid button {
+    padding: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    transition: background-color 0.2s;
+}
+
+.locations-grid button:hover {
+    background-color: #e2e2e2;
+}

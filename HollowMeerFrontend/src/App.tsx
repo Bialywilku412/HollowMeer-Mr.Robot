@@ -10,6 +10,8 @@ import { QuestPage } from "./features/Quest/QuestPage";
 import { YardPage } from "./features/yard/YardPage";
 import { YardScheduling } from "./features/yard/YardScheduling";
 import { YardScheduleDayDetailPage } from "./features/yard/YardScheduleDayDetailPage";
+import { QuartermasterFunctions } from "./features/yard/QuartermasterFunctions";
+import { YardBooking } from "./features/yard/YardBooking";
 import Archive from "./features/archive/ArchivePage";
 
 
@@ -27,6 +29,8 @@ export default function App() {
           
           <Route path="yard" element={<YardPage />} />
           <Route path="yard/YardScheduling" element={<YardScheduling />} />
+          <Route path="yard/QuartermasterFunctions" element={<QuartermasterFunctions />} />
+          <Route path="yard/YardBooking" element={<YardBooking />} />
           <Route path="yard/:id" element={<YardScheduleDayDetailPage />} />
           
           <Route path="*" element={<NotFoundPage />} />

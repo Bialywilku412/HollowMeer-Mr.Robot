@@ -1,0 +1,40 @@
+.archive-page {
+    min-height: 100hv;
+    padding: 40px;
+    background-color: #F5EFE6;
+    color: #474747;
+    font-family: Arial, sans-serif;
+}
+
+.archive-page h1 {
+    margin-top: 0;
+    margin-bottom: 28px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #845124;
+}
+
+.no-reports {
+    color: #474747;
+    margin-bottom: 20px;
+}
+
+.add-report-button {
+    margin-top: 20px;
+    padding: 12px 18px;
+    background-color: #845124;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.add-report-button:hover {
+    background-color: #693F1B;
+}
+
+.add-report-button:disabled {
+    background-color: #B8A18A;
+    cursor: not-allowed;
+}

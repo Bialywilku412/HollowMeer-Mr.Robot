@@ -10,6 +10,8 @@ import { QuestPage } from "./features/Quest/QuestPage";
 import { YardPage } from "./features/yard/YardPage";
 import { YardScheduling } from "./features/yard/YardScheduling";
 import { YardScheduleDayDetailPage } from "./features/yard/YardScheduleDayDetailPage";
+import Archive from "./features/archive/ArchivePage";
+
 
 export default function App() {
   return (
@@ -17,6 +19,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="armoury" element={<Armoury />} />
+          <Route path="archive" element={<Archive />} />
           <Route path="armoury/:id" element={<ArmouryWeaponDetailPage />} />
           <Route path="beastiary" element={<BeastiaryPage />}/>
           <Route path="beastiary/:id" element={<BeastiaryDetailPage />} />

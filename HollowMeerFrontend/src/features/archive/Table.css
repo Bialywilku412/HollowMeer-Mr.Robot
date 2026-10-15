@@ -1,0 +1,61 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+th {
+    text-align: left;
+    padding: 16px;
+    background-color: #E7EDE6;
+    color: #38563C;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #E5E5E0;
+}
+
+td {
+    padding: 16px;
+    color: #474747;
+    border-bottom: 1px solid #E5E5E0;
+}
+
+tbody tr:hover {
+    background-color: #F7F6F2;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-button {
+    padding: 7px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: background-color 0.2s;
+}
+
+.edit-button {
+    background-color: #E7EDE6;
+    color: #38563C;
+}
+
+.edit-button:hover {
+    background-color: #D5E0D3;
+}
+
+.delete-button {
+    background-color: #E7EDE6;
+    color: #38563C;
+}
+
+.delete-button:hover {
+    background-color: #D5E0D3;
+}

@@ -6,7 +6,7 @@ type BeastListProps = {
 
 function BeastiaryTable( {beasts} : BeastListProps) {
         return (
-        <table className="beastiary">
+        <table className="armoury">
             <tr className="header">
                 <th>name</th>
                 <th>region</th>

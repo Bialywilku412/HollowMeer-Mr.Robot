@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import type { Beast } from "../../types/Beast";
+import "../armoury/Armoury.css";
 
 type BeastResponse = {
     id: number;

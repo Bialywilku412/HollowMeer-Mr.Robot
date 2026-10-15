@@ -15,7 +15,7 @@ export default function BeastAddModal({ show, setShow, onAdd }) {
                     setShow(false);
                     }}
                 >
-                    <div className="weapon-modal" style={{ backgroundColor: "gray"}} ref={modalRef}>
+                    <div className="weapon-modal" ref={modalRef}>
                         <h1>Adding Beast</h1>
                         <div className="weapon-modal-form">
                             <BeastWeaponForm

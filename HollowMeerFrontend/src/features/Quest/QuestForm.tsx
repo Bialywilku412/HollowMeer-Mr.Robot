@@ -42,26 +42,35 @@ export function QuestForm({editingQuest, onAdd, onUpdate, onCancel }: QuestFormP
         return (
     <form onSubmit={handleSubmit}>
       <h2>{editingQuest ? "Edit": "Add quest"}</h2>
+      <h3>Name</h3>
       <input
         type="text"
         value={name}
+        placeholder="Name"
         onChange={(event) => setName(event.target.value)}
       />
+      <h3>Host</h3>
       <input
         type="text"
         value={host}
+        placeholder="Host"
         onChange={(event) => setHost(event.target.value)}
       />
+      <h3>Description</h3> 
       <input
         type="text"
         value={description}
+        placeholder="Description"
         onChange={(event) => setDescription(event.target.value)}
       />
+      <h3>Date</h3>
       <input
-        type="text"
+        type="number"
         value={date}
+        placeholder="Date"
         onChange={(event) => setDate(event.target.value)}
       />
+      <br></br>
       <button type="submit">{editingQuest ? "Save" : "Add"}</button>
       {editingQuest && (
         <button type="button" onClick={onCancel}>

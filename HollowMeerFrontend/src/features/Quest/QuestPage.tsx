@@ -70,7 +70,7 @@ const [editingQuest, setEditingQuest] = useState<Quest | null>(null);
 
 
     return (
-        <div>
+        <main className="quest-page">
             <h1>Quest Page</h1>
             <p>Welcome to the Quest Page!</p>
             <QuestList 
@@ -86,7 +86,7 @@ const [editingQuest, setEditingQuest] = useState<Quest | null>(null);
             onCancel={onCancel}
              />
             
-        </div>
+        </main>
     );
 }
 }

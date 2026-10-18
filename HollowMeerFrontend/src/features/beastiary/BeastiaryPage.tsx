@@ -66,9 +66,11 @@ function BeastiaryPage() {
                 setShow={setShowModal}
                 onAdd={AddBeast}
             />
-            <BeastiaryTable
-                beasts={beasts}
-            />
+            <div className="parchment">
+                <BeastiaryTable
+                    beasts={beasts}
+                />
+            </div>
         </>
     );
 }

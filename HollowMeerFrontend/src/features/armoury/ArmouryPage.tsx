@@ -67,10 +67,12 @@ function Armoury() {
                 setShow={setShowModal}
                 onAdd={addWeapon}
             />
-            <div className="parchment">
-                <ArmouryTable
-                    weapons={weapons}
-                /> 
+            <div className="parchment-wrapper">
+                <div className="parchment">
+                    <ArmouryTable
+                        weapons={weapons}
+                    /> 
+                </div>
             </div>
         </>
     );

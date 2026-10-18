@@ -9,8 +9,12 @@
     background-position: center;
     color: var(--color-ink);
     border-radius: var(--radius);
-    box-shadow: inset 0 0 20px var(--color-parchment-edge), var(--shadow-hang);
+    box-shadow: inset 0 0 20px var(--color-parchment-edge);
     transform: rotate(-0.5deg);
+}
+
+.parchment-wrapper {
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.5));
 }
 
 .parchment::before,

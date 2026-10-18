@@ -9,12 +9,12 @@ function BeastRow({data: { id, name ,region, description, drawing}}: BeastRowPro
 {
     const navigate = useNavigate();
 
-    function navigateToWeapon() {
+    function navigateToBeast() {
         navigate(`/beastiary/${id}`);
     }
     
     return(     
-        <tr className="row" onClick={navigateToWeapon}>
+        <tr className="row" onClick={navigateToBeast}>
             <td>{name}</td>
             <td>{region}</td>
             <td>{description}</td>

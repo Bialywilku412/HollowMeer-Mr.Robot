@@ -1,7 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
-import './index.css'
+import './styles/fonts.css'
+import './styles/variabels.css'
+import './styles/base.css'
+import './styles/parchment.css'
 import "./styles.css"
 import App from './App.tsx'
 

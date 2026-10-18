@@ -1,0 +1,50 @@
+.parchment {
+    position: relative;
+    max-width: 900px;
+    margin: var(--space-l) auto;
+    padding: var(--space-l);
+    background-color: var(--color-parchment);
+    background-image: radial-gradient(ellipse at center, var(--color-parchment) 60%, var(--color-parchment-dark) 100%);
+    color: var(--color-ink);
+    border-radius: var(--radius);
+    box-shadow: inset 0 0 40px var(--color-parchment-edge), var(--shadow-hang);
+    transform: rotate(-0.5deg);
+}
+
+.parchment::before,
+.parchment::after {
+    content: "";
+    position: absolute;
+    top: var(--space-s);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--color-nail-light), var(--color-nail-dark));
+}
+
+.parchment::before {
+    left: var(--space-s);
+}
+
+.parchment::after {
+    right: var(--space-s);
+}
+
+.parchment h1, .parchment h2 {
+    color: var(--color-seal);
+}
+
+.parchment table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.parchment th {
+    font-family: var(--font-title);
+    border-bottom: 2px solid var(--color-ink);
+}
+
+.parchment td {
+    padding: var(--space-s);
+    border-bottom: 1px solid var(--color-parchment-edge);
+}

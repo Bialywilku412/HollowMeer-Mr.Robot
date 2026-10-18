@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-wall);
+    background-image: repeating-linear-gradient(90deg, var(--color-wall) 0, var(--color-wall) 60px, var(--color-wall-light) 60px, var(--color-wall-light) 62px);
+    color: var(--color-text-on-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+h1, h2 {
+    font-family: var(--font-title);
+    color: var(--color-gold);
+    letter-spacing: 0.05rem;
+}

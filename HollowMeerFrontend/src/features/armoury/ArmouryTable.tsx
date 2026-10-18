@@ -10,19 +10,23 @@ function ArmouryTable({ weapons }: WeaponListProps) {
 
     return (
         <table className="armoury">
-            <tr className="header">
-                <th>name</th>
-                <th>type</th>
-                <th>condition</th>
-                <th>dangerous</th>
-                <th>note</th>
-            </tr>
-            {weapons.map((data) => (
-               <ArmouryRow
-                    key={data.id}
-                    data={data}
-                /> 
-            ))}
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>type</th>
+                    <th>condition</th>
+                    <th>dangerous</th>
+                    <th>note</th>
+                </tr>
+            </thead>
+            <tbody>
+                {weapons.map((data) => (
+                <ArmouryRow
+                        key={data.id}
+                        data={data}
+                    /> 
+                ))}
+            </tbody>
         </table>
     );
 }

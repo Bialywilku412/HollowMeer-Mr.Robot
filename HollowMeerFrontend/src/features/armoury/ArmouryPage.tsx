@@ -61,18 +61,16 @@ function Armoury() {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Add</button>
             <WeaponAddModal
                 show={showModal}
                 setShow={setShowModal}
                 onAdd={addWeapon}
             />
-            <div className="parchment-wrapper">
-                <div className="parchment">
-                    <ArmouryTable
-                        weapons={weapons}
-                    /> 
-                </div>
+            <div className="parchment">
+                <button className="btn" onClick={() => setShowModal(true)}>Add new weapon</button>
+                <ArmouryTable
+                    weapons={weapons}
+                /> 
             </div>
         </>
     );

@@ -88,15 +88,16 @@ function ArmouryWeaponDetailPage()
 
     return(
         <>
-            <div className="weapon-detail">
-                <p><strong>Name:</strong>{weapon.name}</p>
-                <p><strong>Type:</strong>{weapon.type}</p>
-                <p><strong>Condtition:</strong>{weapon.condition}</p>
-                <p><strong>Dangerous:</strong>{weapon.isDangerous ? "yes" : "no"}</p>
-                <p><strong>Note:</strong>{weapon.note}</p>
+            <div className="parchment">
+                <h2><strong>Name: </strong>{weapon.name}</h2>
+                <h2><strong>Type: </strong>{weapon.type}</h2>
+                <h2><strong>Condtition: </strong>{weapon.condition}</h2>
+                <h2><strong>Dangerous: </strong>{weapon.isDangerous ? "yes" : "no"}</h2>
+                <h2><strong>Note: </strong>{weapon.note}</h2>
+
+                <Link className="btn" to="/armoury">Back to weapons</Link>
+                <button className="btn--danger" onClick={onDelete}>delete</button>
             </div>
-            <Link to="/armoury">Back to weapons</Link>
-            <button onClick={onDelete}>delete</button>
         </>
     );
 }

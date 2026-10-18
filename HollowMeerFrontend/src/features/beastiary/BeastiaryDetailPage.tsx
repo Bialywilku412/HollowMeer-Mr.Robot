@@ -86,7 +86,8 @@ function BeastiaryDetailPage()
 
     return(
         <>
-            <div className="weapon-detail">
+
+            <div className="parchment">
                 <p><strong>Name: </strong>{beast.name}</p>
                 <p><strong>Region: </strong>{beast.region}</p>
                 <p><strong>Description: </strong>{beast.description}</p>

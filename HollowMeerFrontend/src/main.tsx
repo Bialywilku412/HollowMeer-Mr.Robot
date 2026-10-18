@@ -5,7 +5,7 @@ import './styles/fonts.css'
 import './styles/variabels.css'
 import './styles/base.css'
 import './styles/parchment.css'
-import "./styles.css"
+import './styles/buttons.css'
 import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(

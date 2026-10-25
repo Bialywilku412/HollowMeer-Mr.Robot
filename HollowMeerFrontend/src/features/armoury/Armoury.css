@@ -105,3 +105,25 @@
     max-width: 100%;
     display: block;
 }
+
+.weapon-stats {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: var(--space-s);
+}
+
+.weapon-stats dt {
+    font-family: var(--font-title);
+    color: var(--color-seal);
+}
+
+.weapon-stats dd {
+    margin: 0;
+    color: var(--color-ink);
+}
+
+.detail-actions {
+    display: flex;
+    margin-top: var(--space-l);
+    gap: var(--space-s);
+}

@@ -78,25 +78,28 @@ function ArmouryWeaponDetailPage()
         navigate("/armoury");
     }
 
-    if (error || !weapon) {
-        return <p>{error ?? "Weapon not found."}</p>;
-    }
-
     if (loading) {
         return <p>Loading...</p>
+    }
+
+    if (error || !weapon) {
+        return <p>{error ?? "Weapon not found."}</p>;
     }
 
     return(
         <>
             <div className="parchment">
-                <h2><strong>Name: </strong>{weapon.name}</h2>
-                <h2><strong>Type: </strong>{weapon.type}</h2>
-                <h2><strong>Condtition: </strong>{weapon.condition}</h2>
-                <h2><strong>Dangerous: </strong>{weapon.isDangerous ? "yes" : "no"}</h2>
-                <h2><strong>Note: </strong>{weapon.note}</h2>
-
-                <Link className="btn" to="/armoury">Back to weapons</Link>
-                <button className="btn--danger" onClick={onDelete}>delete</button>
+                <h2>{weapon.name}</h2>
+                <dl className="weapon-stats">
+                    <dt>Type</dt> <dd>{weapon.type}</dd>
+                    <dt>Condition</dt> <dd>{weapon.condition}</dd>
+                    <dt>Dangerous</dt> <dd>{weapon.isDangerous ? "yes" : "no"}</dd>
+                    <dt>Note</dt> <dd>{weapon.note}</dd>
+                </dl>
+                <div className="detail-actions">
+                    <Link className="btn" to="/armoury">Back to weapons</Link>
+                    <button className="btn btn--danger" onClick={onDelete}>delete</button>
+                </div>
             </div>
         </>
     );

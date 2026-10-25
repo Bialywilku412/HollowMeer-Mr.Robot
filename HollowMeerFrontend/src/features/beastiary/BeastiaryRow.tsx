@@ -18,7 +18,7 @@ function BeastRow({data: { id, name ,region, drawing}}: BeastRowProps)
             <td>{name}</td>
             <td>{region}</td>
             <td >
-                {drawing ? "no" : "yes"}
+                {drawing ? "yes" : "no"}
             </td>
         </tr>
     )

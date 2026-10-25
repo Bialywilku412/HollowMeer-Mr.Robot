@@ -94,7 +94,7 @@ function BeastiaryDetailPage()
                     <dt>Description</dt> <dd>{beast.description}</dd>
                 </dl>
                 {beast.drawing && (
-                        <img src={beast.drawing} alt={beast.name} />
+                        <img className="beast-drawing" src={beast.drawing} alt={beast.name} />
                     )}
                 <div className="detail-actions">
                     <Link className="btn" to="/beastiary">Back to beastiary</Link>

@@ -127,3 +127,19 @@
     margin-top: var(--space-l);
     gap: var(--space-s);
 }
+
+.beast-drawing {
+    display: block;
+    max-width: min(100%, 360px);
+    margin: var(--space-l) auto;
+}
+
+.item-form::file-selector-button {
+    background-color: var(--color-wood);
+    color: var(--color-text-on-dark);
+    border: 1px solid var(--color-gold);
+    border-radius: var(--radius);
+    font-inherit;
+    padding: var(--space-s) var(--space-m);
+    cursor: pointer;
+}

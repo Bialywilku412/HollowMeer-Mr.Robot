@@ -1,4 +1,4 @@
-table {
+.table-archive {
     width: 100%;
     border-collapse: collapse;
     background-color: #FFFFFF;
@@ -7,7 +7,7 @@ table {
 
 }
 
-th {
+.table-archive th {
     text-align: left;
     padding: 16px;
     background-color: #E7EDE6;
@@ -17,13 +17,13 @@ th {
     border-bottom: 1px solid #E5E5E0;
 }
 
-td {
+.table-archive td {
     padding: 16px;
     color: #474747;
     border-bottom: 1px solid #E5E5E0;
 }
 
-tbody tr:hover {
+.table-archive tbody tr:hover {
     background-color: #F7F6F2;
 }
 

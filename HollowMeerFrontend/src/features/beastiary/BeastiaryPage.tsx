@@ -60,13 +60,13 @@ function BeastiaryPage() {
     }
     return(
         <>
-            <button onClick={() => setShowModal(true)}>Add</button>
             <BeastAddModal
                 show={showModal}
                 setShow={setShowModal}
                 onAdd={AddBeast}
             />
             <div className="parchment">
+                <button className="btn" onClick={() => setShowModal(true)}>Add</button>
                 <BeastiaryTable
                     beasts={beasts}
                 />

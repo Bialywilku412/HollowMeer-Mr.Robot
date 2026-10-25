@@ -13,7 +13,6 @@ function BeastiaryTable( {beasts} : BeastListProps) {
                 <tr>
                     <th>name</th>
                     <th>region</th>
-                    <th>description</th>
                     <th>drawing</th>
                 </tr>
             </thead>

@@ -15,7 +15,7 @@ function BeastiaryDetailPage()
 {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [beast, setBeasts] = useState<Beast | null>(null);
+    const [beast, setBeast] = useState<Beast | null>(null);
     const [error, setError] = useState<null | string>(null);
     const [loading, setLoading] = useState(true);
 
@@ -33,7 +33,7 @@ function BeastiaryDetailPage()
                 return;
             }
 
-            setBeasts({
+            setBeast({
                 id: found.id,
                 name: found.name,
                 region: found.region,
@@ -76,27 +76,31 @@ function BeastiaryDetailPage()
         navigate("/beastiary");
     }
 
-    if (error || !beast) {
-        return <p>{error ?? "Weapon not found."}</p>;
-    }
-
     if (loading) {
         return <p>Loading...</p>
+    }
+
+    if (error || !beast) {
+        return <p>{error ?? "Beast not found."}</p>;
     }
 
     return(
         <>
 
             <div className="parchment">
-                <p><strong>Name: </strong>{beast.name}</p>
-                <p><strong>Region: </strong>{beast.region}</p>
-                <p><strong>Description: </strong>{beast.description}</p>
-                {beast && (
-                    <img src={beast.drawing ?? undefined} alt={beast.name} />
-                )}
+                <h2>{beast.name}</h2>
+                <dl className="weapon-stats">
+                    <dt>Region</dt> <dd>{beast.region}</dd>
+                    <dt>Description</dt> <dd>{beast.description}</dd>
+                </dl>
+                {beast.drawing && (
+                        <img src={beast.drawing} alt={beast.name} />
+                    )}
+                <div className="detail-actions">
+                    <Link className="btn" to="/beastiary">Back to beastiary</Link>
+                    <button className="btn btn--danger" onClick={onDelete}>delete</button>
+                </div>
             </div>
-            <Link to="/beastiary">Back to beastiary</Link>
-            <button onClick={onDelete}>delete</button>
         </>
     );
 }

@@ -66,6 +66,9 @@
 .location-name {
     font-size: 0.95rem;
     color: var(--color-ink);
+    background: rgba(241, 228, 195, 0.85);
+    padding: 0 0.4rem;
+    border-radius: var(--radius);
 }
 
 .map-roads {

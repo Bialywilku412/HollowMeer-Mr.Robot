@@ -5,7 +5,7 @@ type BeastRowProps = {
     data: Beast
 }
 
-function BeastRow({data: { id, name ,region, description, drawing}}: BeastRowProps)
+function BeastRow({data: { id, name ,region, drawing}}: BeastRowProps)
 {
     const navigate = useNavigate();
 
@@ -17,9 +17,8 @@ function BeastRow({data: { id, name ,region, description, drawing}}: BeastRowPro
         <tr className="row" onClick={navigateToBeast}>
             <td>{name}</td>
             <td>{region}</td>
-            <td>{description}</td>
             <td >
-                {drawing == null ? "no" : "yes"}
+                {drawing ? "no" : "yes"}
             </td>
         </tr>
     )

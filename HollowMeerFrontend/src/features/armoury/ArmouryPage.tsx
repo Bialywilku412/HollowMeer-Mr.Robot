@@ -71,6 +71,9 @@ function Armoury() {
                 <ArmouryTable
                     weapons={weapons}
                 /> 
+                <span className="blood" aria-hidden="true"
+                    style={{ "--x": "90%", "--y": "92%", "--size": "130px" } as React.CSSProperties}
+                />
             </div>
         </>
     );

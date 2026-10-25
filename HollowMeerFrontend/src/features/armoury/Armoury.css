@@ -139,7 +139,7 @@
     color: var(--color-text-on-dark);
     border: 1px solid var(--color-gold);
     border-radius: var(--radius);
-    font-inherit;
+    font: inherit;
     padding: var(--space-s) var(--space-m);
     cursor: pointer;
 }

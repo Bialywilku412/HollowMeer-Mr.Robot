@@ -48,6 +48,8 @@
 .parchment th {
     font-family: var(--font-title);
     border-bottom: 2px solid var(--color-ink);
+    text-align: left;
+    padding: var(--space-s);
 }
 
 .parchment td {

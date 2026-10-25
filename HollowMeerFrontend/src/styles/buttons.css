@@ -1,5 +1,6 @@
 .btn {
     display: inline-block;
+    margin-bottom: var(--space-m);
     padding: 0.5em 1.2em;
     font-family: var(--font-title);
     font-size: 1rem;
@@ -39,6 +40,11 @@
 .btn--ghost {
     background-color: transparent;
     border-color: var(--color-gold);
+}
+
+.parchment .btn--ghost {
+    color: var(--color-ink);
+    border-color: var(--color-ink-light);
 }
 
 .btn--disabled {

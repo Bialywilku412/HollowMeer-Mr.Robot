@@ -15,7 +15,7 @@ export default function WeaponAddModal({ show, setShow, onAdd }) {
                     setShow(false);
                     }}
                 >
-                    <div className="weapon-modal" ref={modalRef}>
+                    <div className="weapon-modal parchment" ref={modalRef}>
                         <h1>Adding weapon</h1>
                         <div className="weapon-modal-form">
                             <ArmouryWeaponForm
@@ -23,7 +23,7 @@ export default function WeaponAddModal({ show, setShow, onAdd }) {
                                 setShow={setShow}
                             />
                         </div>
-                        <button className="close-btn" onClick={() => setShow(false)}> close </button>
+                        <button className="btn btn--ghost" onClick={() => setShow(false)}> close </button>
                     </div>
                 </div>
             ) : (

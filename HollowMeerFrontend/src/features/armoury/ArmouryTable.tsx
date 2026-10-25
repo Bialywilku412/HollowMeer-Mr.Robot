@@ -15,7 +15,6 @@ function ArmouryTable({ weapons }: WeaponListProps) {
                     <th>type</th>
                     <th>condition</th>
                     <th>dangerous</th>
-                    <th>note</th>
                 </tr>
             </thead>
             <tbody>

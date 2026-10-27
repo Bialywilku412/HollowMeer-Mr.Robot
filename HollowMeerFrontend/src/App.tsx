@@ -20,7 +20,7 @@ export default function App() {
   return (
     <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
+          <Route index element={<Locations />} />
           <Route path="armoury" element={<Armoury />} />
           <Route path="archive" element={<Archive />} />
           <Route path="armoury/:id" element={<ArmouryWeaponDetailPage />} />

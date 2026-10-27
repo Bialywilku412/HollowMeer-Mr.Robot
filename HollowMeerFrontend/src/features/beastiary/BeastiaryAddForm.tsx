@@ -6,7 +6,7 @@ type BeastFormProps = {
     setShow: (show: boolean) => void
 }
 
-export function BeastWeaponForm({ setShow, onAdd } : BeastFormProps){
+export function BeastAddForm({ setShow, onAdd } : BeastFormProps){
     const [newBeast, setNewBeast] = useState<Omit<Beast, "id">>({
         name: "",
         region: "",
@@ -57,7 +57,7 @@ export function BeastWeaponForm({ setShow, onAdd } : BeastFormProps){
                 </label>
                 <button 
                     type="submit"
-                    className="submit-btn"
+                    className="btn btn--seal"
                 >
                     add
                 </button>

@@ -1,4 +1,4 @@
-import "./Table.css";
+//import "./Table.css";
 import type { Report } from "./reports";
 
 type TableProps = {

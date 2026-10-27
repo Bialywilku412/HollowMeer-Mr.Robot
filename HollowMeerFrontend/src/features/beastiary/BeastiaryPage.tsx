@@ -60,15 +60,17 @@ function BeastiaryPage() {
     }
     return(
         <>
-            <button onClick={() => setShowModal(true)}>Add</button>
             <BeastAddModal
                 show={showModal}
                 setShow={setShowModal}
                 onAdd={AddBeast}
             />
-            <BeastiaryTable
-                beasts={beasts}
-            />
+            <div className="parchment">
+                <button className="btn" onClick={() => setShowModal(true)}>Add new beast</button>
+                <BeastiaryTable
+                    beasts={beasts}
+                />
+            </div>
         </>
     );
 }

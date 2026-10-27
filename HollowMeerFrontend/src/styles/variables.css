@@ -1,0 +1,34 @@
+:root {
+    --color-wall: #2b1d14;
+    --color-wall-light: #3d2a1c;
+    --color-stone: #4a4440;
+
+    --color-parchment: #f1e4c3;
+    --color-parchment-dark: #e6d3a3;
+    --color-parchment-edge: #c9a96e;
+
+    --color-nail-light: #999;
+    --color-nail-dark: #333;
+
+    --color-ink: #3b2414;
+    --color-ink-light: #7a5c3a;
+    --color-text-on-dark: #f1e4c3;
+
+    --color-seal: #8b1e1e;
+    --color-gold: #d4a537;
+    --color-wood: #5a3a22;
+
+    --color-blood: #6b1010;
+    --color-blood-fresh: #a01818;
+    --color-safe: #2f5d3a;
+
+    --font-title: 'Cinzel', serif;
+    --font-body: 'Spectral', Georgia, serif;
+
+    --space-s: 0.5rem;
+    --space-m: 1rem;
+    --space-l: 2rem;
+
+    --radius: 4px;
+    --shadow-hang: 0 10px 25px rgba(0, 0, 0, 0.5);
+}

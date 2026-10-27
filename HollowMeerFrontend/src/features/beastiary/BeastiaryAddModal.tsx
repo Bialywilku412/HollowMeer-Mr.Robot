@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { BeastWeaponForm } from "./BeastiaryAddForm";
+import { BeastAddForm } from "./BeastiaryAddForm";
 import "../armoury/Armoury.css"
 
 export default function BeastAddModal({ show, setShow, onAdd }) {
@@ -15,15 +15,15 @@ export default function BeastAddModal({ show, setShow, onAdd }) {
                     setShow(false);
                     }}
                 >
-                    <div className="weapon-modal" ref={modalRef}>
+                    <div className="weapon-modal parchment" ref={modalRef}>
                         <h1>Adding Beast</h1>
                         <div className="weapon-modal-form">
-                            <BeastWeaponForm
+                            <BeastAddForm
                                 onAdd={onAdd}
                                 setShow={setShow}
                             />
                         </div>
-                        <button className="close-btn" onClick={() => setShow(false)}> close </button>
+                        <button className="btn btn--ghost" onClick={() => setShow(false)}> close </button>
                     </div>
                 </div>
             ) : (

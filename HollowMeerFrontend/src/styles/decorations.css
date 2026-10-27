@@ -1,0 +1,22 @@
+.blood {
+    position: absolute;
+    left: var(--x, 50%);
+    top: var(--y, 50%);
+    width: var(--size, 130px);
+    aspect-ratio: 1;
+    rotate: var(--rotate, 0deg);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    translate: -50%, -50%;
+
+    background-image:
+        radial-gradient(circle at 96% 22%, var(--color-blood) 0 2%, transparent 3%),
+        radial-gradient(circle at 78% 22%, var(--color-blood) 0 2.5%,  transparent 3.5%), 
+        radial-gradient(circle at 88% 58%, var(--color-blood) 0 1.5%,  transparent 2.5%),
+        radial-gradient(ellipse 4% 2.5% at 92% 30%, var(--color-blood) 0 95%,  transparent 100%),
+        radial-gradient(circle at 82% 38%, var(--color-blood) 0 7%,  transparent 8%),
+        radial-gradient(ellipse 14% 6% at 68% 46%, var(--color-blood) 0 95%,  transparent 100%), 
+        radial-gradient(circle at 20% 80%, var(--color-blood) 0 4%,  transparent 5%), 
+        radial-gradient(circle at 50% 50%, var(--color-blood-fresh) 0 18%, var(--color-blood) 26%,  transparent 30%); 
+    opacity: 0.85;
+}

@@ -78,25 +78,29 @@ function ArmouryWeaponDetailPage()
         navigate("/armoury");
     }
 
-    if (error || !weapon) {
-        return <p>{error ?? "Weapon not found."}</p>;
-    }
-
     if (loading) {
         return <p>Loading...</p>
     }
 
+    if (error || !weapon) {
+        return <p>{error ?? "Weapon not found."}</p>;
+    }
+
     return(
         <>
-            <div className="weapon-detail">
-                <p><strong>Name:</strong>{weapon.name}</p>
-                <p><strong>Type:</strong>{weapon.type}</p>
-                <p><strong>Condtition:</strong>{weapon.condition}</p>
-                <p><strong>Dangerous:</strong>{weapon.isDangerous ? "yes" : "no"}</p>
-                <p><strong>Note:</strong>{weapon.note}</p>
+            <div className="parchment">
+                <h2>{weapon.name}</h2>
+                <dl className="weapon-stats">
+                    <dt>Type</dt> <dd>{weapon.type}</dd>
+                    <dt>Condition</dt> <dd>{weapon.condition}</dd>
+                    <dt>Dangerous</dt> <dd>{weapon.isDangerous ? "yes" : "no"}</dd>
+                    <dt>Note</dt> <dd>{weapon.note}</dd>
+                </dl>
+                <div className="detail-actions">
+                    <Link className="btn" to="/armoury">Back to weapons</Link>
+                    <button className="btn btn--danger" onClick={onDelete}>delete</button>
+                </div>
             </div>
-            <Link to="/armoury">Back to weapons</Link>
-            <button onClick={onDelete}>delete</button>
         </>
     );
 }

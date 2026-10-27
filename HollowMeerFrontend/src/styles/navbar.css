@@ -1,0 +1,56 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-wood);
+    border-bottom: 3px solid var(--color-gold);
+    padding: var(--space-s);
+}
+
+.navbar-list, .profile-list {
+        display: none;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+}
+
+.show
+{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+}
+
+.btn.active {
+    border-color: var(--color-blood-fresh);
+    background-color: var(--color-seal);
+}
+
+@media (min-width: 768px) 
+{
+
+
+.navbar-list, .profile-list{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--space-s);
+        
+
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+        color: white;
+    }
+.dropdown-btn  
+{
+        display: none;
+    }
+
+}
+
+
+
+

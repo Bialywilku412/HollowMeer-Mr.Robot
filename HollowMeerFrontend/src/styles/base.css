@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    min-height: 100svh;
+    background-color: var(--color-wall);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                      url('/textures/wood.webp');
+    background-size: 512px;
+    background-attachment: fixed;
+    color: var(--color-text-on-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+h1, h2 {
+    font-family: var(--font-title);
+    color: var(--color-gold);
+    letter-spacing: 0.05em;
+}

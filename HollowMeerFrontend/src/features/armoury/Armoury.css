@@ -1,41 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
-:root {
-  --gold-color: goldenrod;
-  --brown-color: #694c17;
-  --darkblue-color: #030825;
-
-}
-.armoury {
-  width: 100%;
-  max-width: 760px;
-  margin: 3rem auto;
-  border-collapse: collapse;
-  background: black;
-  font-family: 'Spectral', Georgia, serif;
-  color: beige;
-  box-shadow:
-    0 0 0 1px var(--gold-color),
-    0 20px 50px rgba(0, 0, 0, 0.5);
-}
-
-.armoury .header th {
-    font-family: 'IM Fell English SC', serif;
-    font-weight: 400;
-    font-size: 1.05rem;
-    letter-spacing: 0.03rem;
-    text-align: left;
-    border-bottom: 1px solid var(--brown-color);
-}
-
 .armoury .row {
     transition: background 0.2s ease;
 }
 
 .armoury .row td {
-  padding: 0.9rem 1.25rem;
-  border-bottom: 1px solid var(--brown-color);
-  font-size: 0.98rem;
   cursor: pointer;
 }
 
@@ -44,49 +11,25 @@
 }
 
 .armoury .row td:first-child {
-    font-family: 'Cinzel', serif;
+    font-family: var(--font-title);
     font-size: 1.1rem;
 }
 
 .armoury .row td.dangerous {
-  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.85rem;
   letter-spacing: 0.02em;
 }
  
 .armoury .row td.dangerous[data-dangerous="true"] {
-  color: red;
+  color: var(--color-blood);
 }
  
 .armoury .row td.dangerous[data-dangerous="false"] {
-  color: green;
-}
-
-.armoury .row td:last-child {
-  color: grey;
-  font-style: italic;
-  font-size: 0.9rem;
-  max-width: 220px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.armoury th, .armoury td {
-    border: 1px solid #030825;
-    padding: 8px;
+  color: var(--color-safe);
 }
 
 .armoury tr:hover {
-    background-color: #3c3b37;
-}
-
-.armoury th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #694c17;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.06);
 }
 
 .weapon-modal-window {
@@ -103,68 +46,47 @@
 }
 
 .weapon-modal {
-    border: solid;
-    border-color: #030825;
-    border-width: 10px;
-    border-radius: 12px;
-    width: 50%;
-    height: 80%;
+    width: min(90%, 600px);
+    max-height: 80svh;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 24px;
+    gap: var(--space-m);
     box-sizing: border-box;
-    position: relative;
-}
-
-.weapon-modal .submit-btn {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-}
-
-.close-btn {
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
 }
 
 .add-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--space-m);
     width: 100%;
 }
 
 .add-form label {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 10rem 2fr;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-s);
 }
 
 .item-form {
     flex: 1;
-    padding: 6px 8px;
-    border: 1px solid #030825;
-    border-radius: 4px;
+    padding: var(--space-s);
+    border: 1px solid var(--color-parchment-edge);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.4);
+    font: inherit;
+    color: var(--color-ink);
 }
 
-.item-form:not([type="checkbox"]) {
-    flex: 1;
-    padding: 6px 8px;
-    border: 1px solid #030825;
-    border-radius: 4px;
+.item-form[type="checkbox"] {
+    justify-self: start;
+    width: auto;
+    accent-color: var(--color-seal);
 }
 
-.submit-btn {
-    align-self: center;
-    margin-top: 8px;
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: 1px solid #030825;
-    cursor: pointer;
+.item-form:focus-visible {
+    outline: 2px solid var(--color-gold);
 }
 
 .weapon-modal-form {
@@ -173,28 +95,51 @@
     justify-content: flex-start;
 }
 
-.item-form {
-    flex: 1;
-}
-
-.weapon-modal {
-    background-color: #030825;
-    color: beige;
-    width: 50%;
-    height: 80%;
-    overflow-y: auto;
-}
-
 .weapon-detail {
     max-width: 500px;
     margin: 2rem auto;
     padding: 1.5rem;
-    border: 1px solid var(--gold-color);
-    background-color: #030825;
-    color: beige;
 }
 
 .weapon-detail img {
     max-width: 100%;
     display: block;
+}
+
+.weapon-stats {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: var(--space-s);
+}
+
+.weapon-stats dt {
+    font-family: var(--font-title);
+    color: var(--color-seal);
+}
+
+.weapon-stats dd {
+    margin: 0;
+    color: var(--color-ink);
+}
+
+.detail-actions {
+    display: flex;
+    margin-top: var(--space-l);
+    gap: var(--space-s);
+}
+
+.beast-drawing {
+    display: block;
+    max-width: min(100%, 360px);
+    margin: var(--space-l) auto;
+}
+
+.item-form::file-selector-button {
+    background-color: var(--color-wood);
+    color: var(--color-text-on-dark);
+    border: 1px solid var(--color-gold);
+    border-radius: var(--radius);
+    font: inherit;
+    padding: var(--space-s) var(--space-m);
+    cursor: pointer;
 }

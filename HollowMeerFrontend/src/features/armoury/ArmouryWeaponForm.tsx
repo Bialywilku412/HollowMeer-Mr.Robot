@@ -24,7 +24,7 @@ export function ArmouryWeaponForm({ setShow, onAdd } : WeaponFormProps){
     return(
         <>
             <form onSubmit={handleSubmit} className="add-form">
-                <label> Weapon name:
+                <label> Weapon Name:
                     <input
                         type="text"
                         className="item-form"
@@ -40,7 +40,7 @@ export function ArmouryWeaponForm({ setShow, onAdd } : WeaponFormProps){
                         onChange={(e) => setNewWeapon({ ...newWeapon, type: e.target.value })}
                     />
                 </label>
-                <label> Weapon condition:
+                <label> Weapon Condition:
                     <input
                         type="text"
                         className="item-form"
@@ -48,7 +48,7 @@ export function ArmouryWeaponForm({ setShow, onAdd } : WeaponFormProps){
                         onChange={(e) => setNewWeapon({ ...newWeapon, condition: e.target.value })}
                     />
                 </label>
-                <label> Dangerous?:
+                <label> Dangerous?
                     <input
                         type="checkbox"
                         className="item-form"
@@ -66,7 +66,7 @@ export function ArmouryWeaponForm({ setShow, onAdd } : WeaponFormProps){
                 </label>
                 <button 
                     type="submit"
-                    className="submit-btn"
+                    className="btn btn--seal"
                 >
                     add
                 </button>

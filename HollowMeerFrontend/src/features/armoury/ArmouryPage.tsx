@@ -61,15 +61,20 @@ function Armoury() {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Add</button>
             <WeaponAddModal
                 show={showModal}
                 setShow={setShowModal}
                 onAdd={addWeapon}
             />
-            <ArmouryTable
-                weapons={weapons}
-            />
+            <div className="parchment">
+                <button className="btn" onClick={() => setShowModal(true)}>Add new weapon</button>
+                <ArmouryTable
+                    weapons={weapons}
+                /> 
+                <span className="blood" aria-hidden="true"
+                    style={{ "--x": "90%", "--y": "92%", "--size": "130px" } as React.CSSProperties}
+                />
+            </div>
         </>
     );
 }

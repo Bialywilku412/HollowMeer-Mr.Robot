@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
+import "../styles/navbar.css";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -18,20 +19,20 @@ function Navbar() {
     }, []);
 
     return (
-        <header ref={navRef}>
+        <header ref={navRef} className='header'>
             <nav className="navbar navbar--active">
                 <button className="dropdown-btn" onClick={() => setMenuOpen(!menuOpen)}>
                     Menu
                 </button>
                 <ul className={`navbar-list ${menuOpen ? 'show' : ''}`}>
-                    <li><Link to="/beastiary">Beastiary</Link></li>
-                    <li><a href="/locations">Locations</a></li>
-                    <li><Link to="/armoury">Armoury</Link></li>
-                    <li><Link to="/quests">Quests</Link></li>
-                    <li><Link to="/archive">Archive</Link></li>
-                    <li><Link to="/yard">The Yard</Link></li>
-                    <li><a href="login.html">Over us</a></li>
-                    <li><a href="register.html">Members</a></li>
+                    <li><NavLink className='btn' to="/beastiary">Beastiary</NavLink></li>
+                    <li><NavLink className='btn' to="/locations">Locations</NavLink></li>
+                    <li><NavLink className='btn' to="/armoury">Armoury</NavLink></li>
+                    <li><NavLink className='btn' to="/quests">Quests</NavLink></li>
+                    <li><NavLink className='btn' to="/archive">Archive</NavLink></li>
+                    <li><NavLink className='btn' to="/yard">The Yard</NavLink></li>
+                    <li><NavLink className='btn' to="login.html">Over us</NavLink></li>
+                    <li><NavLink className='btn' to="register.html">Members</NavLink></li>
                 </ul>
             </nav>
             <nav className="profile">
@@ -39,8 +40,8 @@ function Navbar() {
                     Profile
                 </button>
                 <ul className={`profile-list ${profileOpen ? 'show' : ''}`}>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
+                    <li><NavLink className='btn' to="login.html">Login</NavLink></li>
+                    <li><NavLink className='btn' to="register.html">Register</NavLink></li>
                 </ul>
             </nav>
         </header>

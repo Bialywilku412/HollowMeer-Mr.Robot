@@ -33,4 +33,44 @@ public class BeastService : IBeastService
         Description = beast.Description,
         ImageUrl = beast.ImageUrl
     };
+
+    public async Task<BeastDto> CreateAsync(CreateBeastDto dto)
+    {
+        var beast = new Beast
+        {
+            Name = dto.Name,
+            Region = dto.Region,
+            Description = dto.Description,
+            ImageUrl = dto.ImageUrl
+        };
+
+        _beasts.Add(beast);
+        await _beasts.SaveChangesAsync();
+
+        return ToDto(beast);
+    }
+
+    public async Task<bool> DeleteAsync(int id)
+    {
+        var beast = await _beasts.GetByIdAsync(id);
+        if (beast is null) return false;
+
+        _beasts.Delete(beast);
+        await _beasts.SaveChangesAsync();
+
+        return true;
+    }
+
+    public async Task<BeastDto?> UpdateAsync(int id, UpdateBeastDto dto)
+    {
+        var beast = await _beasts.GetByIdAsync(id);
+        if (beast is null) return null;
+
+        beast.Name = dto.Name;
+        beast.Region = dto.Region;
+        beast.Description = dto.Description;
+        beast.ImageUrl = dto.ImageUrl;
+        await _beasts.SaveChangesAsync();
+        return ToDto(beast);
+    }
 }

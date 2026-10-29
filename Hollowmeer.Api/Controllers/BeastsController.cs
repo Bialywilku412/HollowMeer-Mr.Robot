@@ -25,4 +25,25 @@ public class BeastsController : ControllerBase
         var beast = await _beasts.GetByIdAsync(id);
         return beast is null ? NotFound() : Ok(beast);
     }
+
+    [HttpPost]
+    public async Task<ActionResult<BeastDto>> Create(CreateBeastDto dto)
+    {
+        var created = await _beasts.CreateAsync(dto);
+        return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var deleted = await _beasts.DeleteAsync(id);
+        return deleted ? NoContent() : NotFound();
+    }
+
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult<BeastDto>> Update(int id, UpdateBeastDto dto)
+    {
+        var updated = await _beasts.UpdateAsync(id, dto);
+        return updated is null ? NotFound() : Ok(updated);
+    }
 }

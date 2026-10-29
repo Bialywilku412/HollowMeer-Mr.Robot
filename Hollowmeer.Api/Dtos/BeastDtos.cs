@@ -8,3 +8,19 @@ public record BeastDto
     public string Description { get; init; }
     public string ImageUrl { get; init; }
 }
+
+public record CreateBeastDto
+{
+    public string Name { get; init; }
+    public string Region { get; init; }
+    public string Description { get; init; }
+    public string ImageUrl { get; init; }
+}
+
+public record UpdateBeastDto
+{
+    public string Name { get; init; }
+    public string Region { get; init; }
+    public string Description { get; init; }
+    public string ImageUrl { get; init; }
+}

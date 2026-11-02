@@ -11,7 +11,7 @@ export function BeastAddForm({ setShow, onAdd } : BeastFormProps){
         name: "",
         region: "",
         description: "",
-        drawing: ""
+        imageUrl: ""
     })
 
     function handleSubmit(event: FormEvent) {
@@ -51,8 +51,8 @@ export function BeastAddForm({ setShow, onAdd } : BeastFormProps){
                     <input
                         type="file"
                         className="item-form"
-                        value={newBeast.drawing ?? ""}
-                        onChange={(e) => setNewBeast({ ...newBeast, drawing: e.target.value })}
+                        value={newBeast.imageUrl ?? ""}
+                        onChange={(e) => setNewBeast({ ...newBeast, imageUrl: e.target.value })}
                     />
                 </label>
                 <button 

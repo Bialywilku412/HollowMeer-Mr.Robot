@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ArmouryTable from "./ArmouryTable";
-import { type Weapon } from "./weapons";
+import { type Weapon } from "../../types/weapons";
 import WeaponAddModal from "./ArmouryWeaponAddModal";
 
 function Armoury() {

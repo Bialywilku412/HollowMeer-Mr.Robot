@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import type { Weapon } from "./weapons";
+import type { Weapon } from "../../types/weapons";
 import "./Armoury.css"
 
 type WeaponResponse = {

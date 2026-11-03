@@ -1,4 +1,4 @@
-import type { Weapon } from "./weapons";
+import type { Weapon } from "../../types/weapons";
 import { useState, type FormEvent } from "react";
 
 type WeaponFormProps = {

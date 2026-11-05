@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import type { Beast } from "../../types/Beast";
 import BeastiaryTable from "./BeastiaryTabel";
 import BeastAddModal from "./BeastiaryAddModal";
 import * as beastsApi from "../../api/beasts";
 import "../armoury/Armoury.css";
 import { useFetch } from "../../hooks/useFetch";
-import { data } from "react-router";
 
 function BeastiaryPage() {
     const {
@@ -14,19 +13,21 @@ function BeastiaryPage() {
             error,
             setData: setBeasts,
         } = useFetch(beastsApi.getAll, []);
-     const [addError, setAddError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
+    const [saveError, setSaveError] = useState<string | null>(null);
 
-    async function handleAdd(data: Omit<Beast, "id">) {
+    async function addBeast(name: string, region: string, description: string, imageUrl: string) {
         try {
-            setAddError(null);
-            const created = await beastsApi.create(data)
+            const created = await beastsApi.create({ name, region, description, imageUrl})
             setBeasts([...(beasts ?? []), created]);
-        } catch {
-            setAddError("Could not add beast");
+            setSaveError(null);
+            setShowModal(false);
+        } catch (err) {
+            setSaveError(
+                err instanceof Error ? err.message : "Could not save the beast.",
+            );
         }
     }
-
 
     if (loading) {
         return <p>Loading beasts...</p>;
@@ -38,12 +39,13 @@ function BeastiaryPage() {
     return(
         <>
             <BeastAddModal
+                editingBeast={null}
+                onAdd={addBeast}
                 show={showModal}
                 setShow={setShowModal}
-                onAdd={handleAdd}
             />
             <div className="parchment">
-                {addError && <p className="form-error">{addError}</p>}
+                {saveError && <p className="form-error">{saveError}</p>}
                 <button className="btn" onClick={() => setShowModal(true)}>Add new beast</button>
                 <BeastiaryTable
                     beasts={beasts ?? []}

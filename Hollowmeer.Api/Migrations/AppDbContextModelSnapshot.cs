@@ -42,6 +42,28 @@ namespace Hollowmeer.Api.Migrations
 
                     b.ToTable("Beasts");
                 });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.Quest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Date")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Quests");
+                });
 #pragma warning restore 612, 618
         }
     }

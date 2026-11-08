@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:5259
+
+### Get all quests
+GET {{baseUrl}}/api/quests
+
+### Get one beast
+GET {{baseUrl}}/api/quests/2
+
+### Create a beast
+POST {{baseUrl}}/api/quests
+Content-Type: application/json
+
+{
+  "name": "Quest 4",
+  "description": "Naughty Diglet(really naughty)",
+  "date": 3
+ 
+}
+
+### Delete a beast
+DELETE {{baseUrl}}/api/quests/4
+
+### Update a beast
+PUT {{baseUrl}}/api/quests/1
+Content-Type: application/json
+
+{
+  "name": "Quest 1(updated)",
+  "description": "Naughty Diglet(really naughty)",
+  "date": 3
+}

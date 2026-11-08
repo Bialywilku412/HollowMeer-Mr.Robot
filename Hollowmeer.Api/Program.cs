@@ -13,9 +13,18 @@ builder.Services.AddScoped<IBeastService, BeastService>();
 
 builder.Services.AddControllers();
 
+var frontendUrl = builder.Configuration["Frontend:Url"]
+    ?? throw new InvalidOperationException("Missing configuration value Frontend:Url");
+builder.Services.AddCors(options =>
+    options.AddDefaultPolicy(policy =>
+        policy.WithOrigins(frontendUrl)
+              .AllowAnyHeader()
+              .AllowAnyMethod()));
+
 var app = builder.Build();
 
 await SeedData.InitializeAsync(app);
+app.UseCors();
 
 app.MapControllers();
 

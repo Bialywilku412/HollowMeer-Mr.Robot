@@ -5,7 +5,7 @@ type BeastListProps = {
     beasts: Beast[];
 }
 
-function BeastiaryTable( {beasts} : BeastListProps) {
+function BeastiaryTable( { beasts } : BeastListProps) {
 
     return (
         <table className="armoury">

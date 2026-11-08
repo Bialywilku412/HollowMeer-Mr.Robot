@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:5259
+
+### Get all beasts
+GET {{baseUrl}}/api/beasts
+
+### Get one beast
+GET {{baseUrl}}/api/beasts/4
+
+### Create a beast
+POST {{baseUrl}}/api/beasts
+Content-Type: application/json
+
+{
+  "name": "Diglet",
+  "region": "DigletLand",
+  "description": "Naughty Diglet(really naughty)",
+  "imageUrl": "DigletImage"
+}
+
+### Delete a beast
+DELETE {{baseUrl}}/api/beasts/4
+
+### Update a beast
+PUT {{baseUrl}}/api/beasts/1
+Content-Type: application/json
+
+{
+  "name": "Diglet",
+  "region": "DigletLand",
+  "description": "Naughty Diglet(really naughty)",
+  "imageUrl": "DigletImage"
+}

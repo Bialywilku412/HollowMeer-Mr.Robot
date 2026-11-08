@@ -1,55 +1,33 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import type { Beast } from "../../types/Beast";
 import BeastiaryTable from "./BeastiaryTabel";
 import BeastAddModal from "./BeastiaryAddModal";
+import * as beastsApi from "../../api/beasts";
 import "../armoury/Armoury.css";
+import { useFetch } from "../../hooks/useFetch";
 
 function BeastiaryPage() {
-    const [beasts, setBeasts] = useState<Beast[]>([])
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const {
+            data: beasts,
+            loading,
+            error,
+            setData: setBeasts,
+        } = useFetch(beastsApi.getAll, []);
     const [showModal, setShowModal] = useState(false);
+    const [saveError, setSaveError] = useState<string | null>(null);
 
-    async function fetchBeasts() {
+    async function addBeast(name: string, region: string, description: string, imageUrl: string) {
         try {
-            const response = await fetch("/beasts.json");
-            if(!response.ok) {
-                throw new Error(`Request failed with status ${response.status}`);
-            }
-            const data = await response.json();
-            setBeasts(data);
+            const created = await beastsApi.create({ name, region, description, imageUrl})
+            setBeasts([...(beasts ?? []), created]);
+            setSaveError(null);
+            setShowModal(false);
         } catch (err) {
-            console.error(err);
-            setError("Could not load beasts");
-        } finally {
-            setLoading(false);
+            setSaveError(
+                err instanceof Error ? err.message : "Could not save the beast.",
+            );
         }
     }
-
-    async function AddBeast(newBeast: Omit<Beast, "id">) {
-        try {
-            const response = await fetch("/beasts.json", {
-                method: "POST",
-                body: JSON.stringify(newBeast)
-            });
-            if (!response.ok) {
-                throw new Error(`Request failed with ${response.status}`);
-            }
-            setBeasts((prev) => [
-                ...prev,
-                { ...newBeast, id: Math.max(0, ...prev.map((beast) => beast.id)) + 1},
-            ])
-        } catch (err) {
-            console.error(err);
-            setError("Could not add beast");
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        fetchBeasts();
-    }, []);
 
     if (loading) {
         return <p>Loading beasts...</p>;
@@ -61,14 +39,16 @@ function BeastiaryPage() {
     return(
         <>
             <BeastAddModal
+                editingBeast={null}
+                onAdd={addBeast}
                 show={showModal}
                 setShow={setShowModal}
-                onAdd={AddBeast}
             />
             <div className="parchment">
+                {saveError && <p className="form-error">{saveError}</p>}
                 <button className="btn" onClick={() => setShowModal(true)}>Add new beast</button>
                 <BeastiaryTable
-                    beasts={beasts}
+                    beasts={beasts ?? []}
                 />
             </div>
         </>

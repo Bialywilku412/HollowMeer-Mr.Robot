@@ -3,5 +3,5 @@ export type Beast = {
     name: string,
     region: string,
     description: string,
-    drawing: string | null
+    imageUrl: string | null
 }

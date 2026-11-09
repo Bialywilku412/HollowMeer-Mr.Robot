@@ -21,6 +21,7 @@ public class QuestService : IQuestService
         {
             Id = q.Id,
             Name = q.Name,
+            Host = q.Host,
             Description = q.Description,
             Date = q.Date
         }).ToList();
@@ -36,6 +37,7 @@ public class QuestService : IQuestService
         var quest = new Quest
         {
             Name = createQuestDto.Name,
+            Host = createQuestDto.Host,
             Description = createQuestDto.Description,
             Date = createQuestDto.Date
         };
@@ -51,6 +53,7 @@ public class QuestService : IQuestService
             return null;
 
         quest.Name = updateQuestDto.Name;
+        quest.Host = updateQuestDto.Host;
         quest.Description = updateQuestDto.Description;
         quest.Date = updateQuestDto.Date;
 
@@ -78,6 +81,7 @@ public class QuestService : IQuestService
         {
             Id = quest.Id,
             Name = quest.Name,
+            Host = quest.Host,
             Description = quest.Description,
             Date = quest.Date
         };

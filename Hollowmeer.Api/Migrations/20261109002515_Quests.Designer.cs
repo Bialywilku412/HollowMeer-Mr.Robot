@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hollowmeer.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261108171139_Quests")]
+    [Migration("20261109002515_Quests")]
     partial class Quests
     {
         /// <inheritdoc />
@@ -56,6 +56,10 @@ namespace Hollowmeer.Api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Host")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

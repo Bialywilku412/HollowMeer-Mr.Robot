@@ -12,6 +12,7 @@ Content-Type: application/json
 
 {
   "name": "Quest 4",
+  "host": "Quest 4 host",
   "description": "Naughty Diglet(really naughty)",
   "date": 3
  
@@ -26,6 +27,7 @@ Content-Type: application/json
 
 {
   "name": "Quest 1(updated)",
+  "host": "Quest 1 host(updated)",
   "description": "Naughty Diglet(really naughty)",
   "date": 3
 }

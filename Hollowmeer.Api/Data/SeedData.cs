@@ -26,9 +26,9 @@ public static class SeedData
         if (!await context.Quests.AnyAsync())
         {
             context.Quests.AddRange(
-                new Quest { Name = "Quest1", Description = "aaaaaaa", Date = 1 },
-                new Quest { Name = "Quest2", Description = "bbbbbbb", Date = 3 },
-                new Quest { Name = "Quest3", Description = "ccccccc", Date = 4 }
+                new Quest { Name = "Quest1", Host = "Host1", Description = "aaaaaaa",  Date = 1 },
+                new Quest { Name = "Quest2", Host = "Host2", Description = "bbbbbbb",  Date = 3 },
+                new Quest { Name = "Quest3", Host = "Host3", Description = "ccccccc",  Date = 4 }
             );
         }
 

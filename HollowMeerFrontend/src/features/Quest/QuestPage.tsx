@@ -3,49 +3,35 @@ import "./QuestPage.css"
 import { type Quest } from "./Quest";
 import { QuestList } from "./QuestList";
 import { QuestForm } from "./QuestForm";
+import * as QuestsApi from "../../api/quests";
+import { useFetch } from "../../hooks/useFetch";
 
 
 export function QuestPage()
 {
-const [quests, setQuests] = useState<Quest[]>([]);
-const [loading, setLoading] =useState(true);
-const [error, setError] = useState<string | null>(null);
+const {
+  data: quests,
+  loading,
+  error,
+  setData: setQuests,
+} = useFetch(QuestsApi.GetAll, []);
 const [editingQuest, setEditingQuest] = useState<Quest | null>(null);
 
-{
-    useEffect(() => 
+
+
+
+
+      async function onAdd(name: string, host: string , description: string, date: number)
         {
-            async function loadQuests() 
-            {
-             try
-             {
-                const response  = await fetch("/quests.json");
-                if(!response.ok)
-                    {
-                        throw new Error(`Request failed with status ${response.status}`);
-                    }
-                    const data = await response.json();
-                    setQuests(data);
-             }
-             catch (err) 
-            {
-                console.error(err);
-                setError("Could not load products.");
-            } finally 
-            {
-                setLoading(false);
-            }
-        }
-        loadQuests();
-        }, []);
+                 try {
+                     const created = await QuestsApi.create({ name, host, description, date})
+                     setQuests([...(quests ?? []), created]);
 
-
-        function onAdd(name: string, host: string , description: string, date: string)
-        {
-            const id = setQuests.length + 1;
-            const newQuest = { id, name, host, description, date}
-
-            setQuests([...quests, newQuest]);
+                 } catch (err) {
+                     console.error(
+                         err instanceof Error ? err.message : "Could not save the quest.",
+                     );
+                 }
         }
         function onUpdate(updated: Quest)
         {
@@ -64,6 +50,14 @@ const [editingQuest, setEditingQuest] = useState<Quest | null>(null);
         function deleteProduct(id: number)
         {
             setQuests(quests.filter((q) => q.id !== id))
+        }
+
+        if (loading) {
+            return <p>Loading quests...</p>;
+        }
+
+        if (error) {
+            return <p>{error}</p>;
         }
 
 
@@ -89,5 +83,5 @@ const [editingQuest, setEditingQuest] = useState<Quest | null>(null);
         </main>
     );
 }
-}
+
 export default QuestPage;

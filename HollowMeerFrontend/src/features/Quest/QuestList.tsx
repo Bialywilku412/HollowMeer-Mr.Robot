@@ -11,7 +11,7 @@ type QuestListProps =
 export function QuestList({quests, onDelete, onEdit} :QuestListProps)
 {
     return(
-        <div>
+        <div className="quest-container">
                      {quests.map((product) => (
                 <QuestCard key={product.id} quest={product} onDelete={onDelete} onEdit={onEdit} />
                 

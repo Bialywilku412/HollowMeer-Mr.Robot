@@ -11,6 +11,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IBeastService, BeastService>();
 builder.Services.AddScoped<IRegionService, RegionService>();
+builder.Services.AddScoped<IQuestService, QuestService>();
 
 builder.Services.AddControllers();
 

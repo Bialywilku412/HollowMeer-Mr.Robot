@@ -30,3 +30,4 @@ Content-Type: application/json
   "description": "Naughty Diglet(really naughty)",
   "imageUrl": "DigletImage"
 }
+

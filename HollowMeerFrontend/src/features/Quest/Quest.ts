@@ -3,5 +3,5 @@ export type Quest = {
     name: string;
     host: string;
     description: string;
-    date: string;
+    date: number;
 }

@@ -15,10 +15,17 @@ public static class SeedData
             return;
         }
 
+        var regions = new List<Region>
+        {
+            new Region { Name = "Forest" },
+            new Region { Name = "Dungeon" },
+            new Region { Name = "Desert" }
+        };
+
         context.Beasts.AddRange(
-            new Beast { Name = "Monster1", Region = "Dungeon1", Description = "aaaaaaa", ImageUrl = "/data/aaa" },
-            new Beast { Name = "Monster2", Region = "Dungeon2", Description = "bbbbbbb", ImageUrl = "/data/aaa" },
-            new Beast { Name = "Monster3", Region = "Dungeon3", Description = "ccccccc", ImageUrl = "/data/aaa" }
+            new Beast { Name = "Monster1", Region = regions[0], Description = "aaaaaaa", ImageUrl = "/data/aaa" },
+            new Beast { Name = "Monster2", Region = regions[1], Description = "bbbbbbb", ImageUrl = "/data/aaa" },
+            new Beast { Name = "Monster3", Region = regions[2], Description = "ccccccc", ImageUrl = "/data/aaa" }
         );
 
         await context.SaveChangesAsync();

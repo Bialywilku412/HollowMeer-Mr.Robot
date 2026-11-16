@@ -34,13 +34,45 @@ namespace Hollowmeer.Api.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Region")
+                    b.Property<int>("RegionId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegionId");
+
+                    b.ToTable("Beasts");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.Region", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Beasts");
+                    b.ToTable("Regions");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.Beast", b =>
+                {
+                    b.HasOne("Hollowmeer.Api.Models.Region", "Region")
+                        .WithMany("Beasts")
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Region");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.Region", b =>
+                {
+                    b.Navigation("Beasts");
                 });
 #pragma warning restore 612, 618
         }

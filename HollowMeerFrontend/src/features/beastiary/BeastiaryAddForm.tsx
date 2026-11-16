@@ -1,31 +1,36 @@
+import { useFetch } from "../../hooks/useFetch";
 import type { Beast } from "../../types/Beast";
+import type { BeastData } from "../../api/beasts";
+import * as regionsApi from "../../api/regions";
 import { useState, type FormEvent } from "react";
 
 type BeastFormProps = {
     editingBeast: Beast | null;
-    onAdd?: (name: string, region: string, description: string, imageUrl: string) => void;
-    onUpdate?: (beast: Beast) => void;
+    onAdd?: (data: BeastData)  => void;
+    onUpdate?: (id: number, data: BeastData) => void;
     setShow: (show: boolean) => void;
 }
 
 export function BeastAddForm({ setShow, onAdd, editingBeast, onUpdate} : BeastFormProps){
     const [name, setName] = useState(editingBeast?.name ?? "");
-    const [region, setRegion] = useState(editingBeast?.region ?? "");
+    const [regionId, setRegionId] = useState(editingBeast?.region.id ?? 0,);
     const [description, setDescription] = useState(editingBeast?.description ?? "");
     const [imageUrl, setImageUrl] = useState(editingBeast?.imageUrl ?? "");
+    const { data: regions } = useFetch(regionsApi.getAll, []);
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault();
         if (name.trim() === "") {
             return;
         }
+        const data: BeastData = { name, regionId, description, imageUrl };
         if (editingBeast) {
-            onUpdate?.({ id: editingBeast.id, name, region, description, imageUrl });
+            onUpdate?.(editingBeast.id, data);
         } else {
-            onAdd?.(name, region, description, imageUrl);
+            onAdd?.(data);
         }
         setName("");
-        setRegion("");
+        setRegionId(0);
         setDescription("");
         setImageUrl("");
     }
@@ -43,12 +48,18 @@ export function BeastAddForm({ setShow, onAdd, editingBeast, onUpdate} : BeastFo
                     />
                 </label>
                 <label> Beast region:
-                    <input
-                        type="text"
+                    <select
                         className="item-form"
-                        value={region}
-                        onChange={(event) => setRegion(event.target.value)}
-                    />
+                        value={regionId}
+                        onChange={(event) => setRegionId(Number(event.target.value))}
+                    >
+                        <option value={0}>Choose a region</option>
+                        {(regions ?? []).map((region) => (
+                            <option key={region.id} value={region.id}>
+                                {region.name}
+                            </option>
+                        ))}
+                    </select>
                 </label>
                 <label> Beast description:
                     <input

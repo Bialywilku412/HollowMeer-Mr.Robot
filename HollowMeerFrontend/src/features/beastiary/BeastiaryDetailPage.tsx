@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router";
 import { useFetch } from "../../hooks/useFetch";
 import { type Beast } from "../../types/Beast";
+import { type BeastData } from "../../api/beasts";
 import BeastAddModal from "./BeastiaryAddModal";
 import * as beastsApi from "../../api/beasts";
 import "../armoury/Armoury.css";
@@ -20,15 +21,10 @@ function BeastiaryDetailPage()
     const [saveError, setSaveError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
 
-    async function updateBeast(updated: Beast) {
+    async function updateBeast(id: number, data: BeastData) {
         try {
-            const saved = await beastsApi.update(updated.id, {
-                name: updated.name,
-                region: updated.region,
-                description: updated.description,
-                imageUrl: updated.imageUrl ?? "",
-            });
-            setBeast(saved);
+            const updated = await beastsApi.update(id, data);
+            setBeast(updated);
             setShowModal(false);
             setSaveError(null);
         } catch (err) {
@@ -70,7 +66,7 @@ function BeastiaryDetailPage()
                 <h2>{beast.name}</h2>
                 {saveError && <p className="form-error">{saveError}</p>}
                 <dl className="weapon-stats">
-                    <dt>Region</dt> <dd>{beast.region}</dd>
+                    <dt>Region</dt> <dd>{beast.region.name}</dd>
                     <dt>Description</dt> <dd>{beast.description}</dd>
                 </dl>
                 {beast.imageUrl && (

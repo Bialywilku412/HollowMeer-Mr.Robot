@@ -12,12 +12,6 @@ public static class SeedData
         var context = scope.ServiceProvider
             .GetRequiredService<AppDbContext>();
 
-        // Seed Beasts
-        if (!await context.Beasts.AnyAsync())
-        {
-            return;
-        }
-
         if (!await context.Quests.AnyAsync())
         {
             context.Quests.AddRange(
@@ -25,20 +19,27 @@ public static class SeedData
                 new Quest { Name = "Quest2", Host = "Host2", Description = "bbbbbbb", Date = 3 },
                 new Quest { Name = "Quest3", Host = "Host3", Description = "ccccccc", Date = 4 }
             );
-        }
-
-        var regions = new List<Region>
-        {
-            new Region { Name = "Forest" },
-            new Region { Name = "Dungeon" },
-            new Region { Name = "Desert" }
         };
 
-        context.Beasts.AddRange(
-            new Beast { Name = "Monster1", Region = regions[0], Description = "aaaaaaa", ImageUrl = "/data/aaa" },
-            new Beast { Name = "Monster2", Region = regions[1], Description = "bbbbbbb", ImageUrl = "/data/aaa" },
-            new Beast { Name = "Monster3", Region = regions[2], Description = "ccccccc", ImageUrl = "/data/aaa" }
-        );
+        if (!await context.Regions.AnyAsync())
+        {
+            context.Regions.AddRange(
+                new Region { Name = "Forest" },
+                new Region { Name = "Dungeon" },
+                new Region { Name = "Desert" }
+            );
+            await context.SaveChangesAsync();
+        };
+
+        if (!await context.Beasts.AnyAsync())
+        {
+            var regions = await context.Regions.OrderBy(r => r.Id).ToListAsync();
+            context.Beasts.AddRange(
+                new Beast { Name = "Monster1", Region = regions[0], Description = "aaaaaaa", ImageUrl = "/data/aaa" },
+                new Beast { Name = "Monster2", Region = regions[1], Description = "bbbbbbb", ImageUrl = "/data/aaa" },
+                new Beast { Name = "Monster3", Region = regions[2], Description = "ccccccc", ImageUrl = "/data/aaa" }
+            );
+        };
 
         await context.SaveChangesAsync();
     }

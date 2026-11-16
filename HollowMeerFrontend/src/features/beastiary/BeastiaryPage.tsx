@@ -1,5 +1,6 @@
 import {useState } from "react";
 import type { Beast } from "../../types/Beast";
+import type { BeastData } from "../../api/beasts";
 import BeastiaryTable from "./BeastiaryTabel";
 import BeastAddModal from "./BeastiaryAddModal";
 import * as beastsApi from "../../api/beasts";
@@ -16,9 +17,9 @@ function BeastiaryPage() {
     const [showModal, setShowModal] = useState(false);
     const [saveError, setSaveError] = useState<string | null>(null);
 
-    async function addBeast(name: string, region: string, description: string, imageUrl: string) {
+    async function addBeast(data: BeastData) {
         try {
-            const created = await beastsApi.create({ name, region, description, imageUrl})
+            const created = await beastsApi.create(data)
             setBeasts([...(beasts ?? []), created]);
             setSaveError(null);
             setShowModal(false);

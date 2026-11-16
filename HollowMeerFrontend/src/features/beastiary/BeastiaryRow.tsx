@@ -16,7 +16,7 @@ function BeastRow({data: { id, name ,region, imageUrl}}: BeastRowProps)
     return(     
         <tr className="row" onClick={navigateToBeast}>
             <td>{name}</td>
-            <td>{region}</td>
+            <td>{region.name}</td>
             <td >
                 {imageUrl ? "yes" : "no"}
             </td>

@@ -4,14 +4,14 @@ import { baseUrl, errorFromResponse } from "./http";
 type BeastResponse = {
     id: number;
     name: string;
-    region: string;
+    region: { id: number; name: string };
     description: string;
     imageUrl: string
 }
 
 export type BeastData = {
     name: string;
-    region: string;
+    regionId: number;
     description: string;
     imageUrl: string;
 }
@@ -29,7 +29,7 @@ function toBeast(raw: BeastResponse): Beast {
 function toRequestBody(data: BeastData) {
     return {
         name: data.name,
-        region: data.region,
+        regionId: data.regionId,
         description: data.description,
         imageUrl: data.imageUrl
     }

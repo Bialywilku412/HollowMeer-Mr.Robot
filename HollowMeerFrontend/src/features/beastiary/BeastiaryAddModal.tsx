@@ -2,11 +2,12 @@ import { useRef } from "react";
 import { BeastAddForm } from "./BeastiaryAddForm";
 import type { Beast } from "../../types/Beast";
 import "../armoury/Armoury.css"
+import type { BeastData } from "../../api/beasts";
 
 type BeastModalProps = {
     editingBeast: Beast | null;
-    onAdd?: (name: string, region: string, description: string, imageUrl: string) => void;
-    onUpdate?: (beast: Beast) => void;
+    onAdd?: (data: BeastData) => void;
+    onUpdate?: (id: number, data: BeastData) => void;
     setShow: (show: boolean) => void;
     show: boolean;
 }

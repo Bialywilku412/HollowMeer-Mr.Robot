@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Hollowmeer.Api.Dtos;
 
 public record BeastDto
@@ -11,7 +13,10 @@ public record BeastDto
 
 public record CreateBeastDto
 {
+    [Required]
+    [StringLength(100, MinimumLength = 3)]
     public string Name { get; init; } = string.Empty;
+    [Required]
     public int RegionId { get; init; }
     public string Description { get; init; }
     public string ImageUrl { get; init; }
@@ -19,7 +24,10 @@ public record CreateBeastDto
 
 public record UpdateBeastDto
 {
+    [Required]
+    [StringLength(100, MinimumLength = 3)]
     public string Name { get; init; } = string.Empty;
+    [Required]
     public int RegionId { get; init; }
     public string Description { get; init; }
     public string ImageUrl { get; init; }

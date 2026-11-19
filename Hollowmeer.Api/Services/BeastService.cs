@@ -1,16 +1,19 @@
 using Hollowmeer.Api.Dtos;
 using Hollowmeer.Api.Models;
 using Hollowmeer.Api.Repositories;
+using Hollowmeer.Api.Exceptions;
 
 namespace Hollowmeer.Api.Services;
 
 public class BeastService : IBeastService
 {
     private readonly IRepository<Beast> _beasts;
+    private readonly IRepository<Region> _regions;
 
-    public BeastService(IRepository<Beast>  beasts)
+    public BeastService(IRepository<Beast>  beasts, IRepository<Region> regions)
     {
         _beasts = beasts;
+        _regions = regions;
     }
 
     public async Task<List<BeastDto>> GetAllAsync(string? search = null)
@@ -31,6 +34,12 @@ public class BeastService : IBeastService
 
     public async Task<BeastDto> CreateAsync(CreateBeastDto dto)
     {
+        var region = await _regions.GetByIdAsync(dto.RegionId);
+        if (region is null)
+        {
+            throw new BadRequestException($"Region with ID {dto.RegionId} does not exist.");
+        }
+
         var beast = new Beast
         {
             Name = dto.Name,
@@ -42,8 +51,7 @@ public class BeastService : IBeastService
         _beasts.Add(beast);
         await _beasts.SaveChangesAsync();
 
-        var created = await _beasts.GetByIdAsync(beast.Id, b => b.Region);
-        return ToDto(created!);
+        return ToDto(beast);
     }
 
     public async Task<BeastDto?> UpdateAsync(int id, UpdateBeastDto dto)
@@ -51,14 +59,19 @@ public class BeastService : IBeastService
         var beast = await _beasts.GetByIdAsync(id);
         if (beast is null) return null;
 
+        var region = await _regions.GetByIdAsync(dto.RegionId);
+        if (region is null)
+        {
+            throw new BadRequestException($"Region with ID {dto.RegionId} does not exist.");
+        }
+
         beast.Name = dto.Name;
         beast.RegionId = dto.RegionId;
         beast.Description = dto.Description;
         beast.ImageUrl = dto.ImageUrl;
         await _beasts.SaveChangesAsync();
 
-        var updated = await _beasts.GetByIdAsync(id, b => b.Region);
-        return ToDto(updated!);
+        return ToDto(beast);
     }
 
     public async Task<bool> DeleteAsync(int id)

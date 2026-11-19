@@ -2,6 +2,7 @@ using Hollowmeer.Api.Data;
 using Hollowmeer.Api.Repositories;
 using Hollowmeer.Api.Services;
 using Microsoft.EntityFrameworkCore;
+using Hollowmeer.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services.AddScoped<IRegionService, RegionService>();
 builder.Services.AddScoped<IQuestService, QuestService>();
 
 builder.Services.AddControllers();
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var frontendUrl = builder.Configuration["Frontend:Url"]
     ?? throw new InvalidOperationException("Missing configuration value Frontend:Url");
@@ -26,6 +29,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 await SeedData.InitializeAsync(app);
+app.UseExceptionHandler();
 app.UseCors();
 
 app.MapControllers();

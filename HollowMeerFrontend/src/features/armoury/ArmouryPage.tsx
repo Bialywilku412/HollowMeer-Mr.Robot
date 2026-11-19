@@ -1,55 +1,34 @@
 import { useEffect, useState } from "react";
 import ArmouryTable from "./ArmouryTable";
-import { type Weapon } from "./weapons";
+import type { Weapon } from "../../types/Weapon";
+import type { WeaponData } from "../../api/weapons";
+import * as weaponsApi from "../../api/weapons";
 import WeaponAddModal from "./ArmouryWeaponAddModal";
+import { useFetch } from "../../hooks/useFetch";
 
 function Armoury() {
 
-    const [weapons, setWeapons] = useState<Weapon[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [showModal, setShowModal] = useState(false)
+    const {
+            data: weapons,
+            loading,
+            error,
+            setData: setWeapons,
+        } = useFetch(weaponsApi.getAll, []);
+    const [showModal, setShowModal] = useState(false);
+    const [saveError, setSaveError] = useState<string | null>(null);
 
-    async function addWeapon(newWeapon: Omit<Weapon, "id">) {
+    async function addWeapon(data: WeaponData) {
         try {
-            const response = await fetch("/weapons.json", {
-                method: "POST",
-                body: JSON.stringify(newWeapon)
-            });
-            if (!response.ok) {
-                throw new Error(`Request failed with ${response.status}`);
-            }
-            setWeapons((prev) => [
-                ...prev,
-                { ...newWeapon, id: Math.max(0, ...prev.map((weapon) => weapon.id)) + 1 },
-            ])
+            const created = await weaponsApi.create(data);
+            setWeapons([...(weapons ?? []), created]);
+            setSaveError(null);
+            setShowModal(false);
         } catch (err) {
-            console.error(err);
-            setError("Could not add weapon")
-        } finally {
-            setLoading(false);
+            setSaveError(
+                err instanceof Error ? err.message : "Could not save the weapon.",
+            );
         }
     }
-
-    async function fetchWeapons() {
-        try {
-            const response = await fetch("/weapons.json");
-            if (!response.ok) {
-                throw new Error(`Request failed with status ${response.status}`);
-            }
-            const data = await response.json();
-            setWeapons(data);
-        } catch (err) {
-            console.error(err);
-            setError("Could not load products. ");
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        fetchWeapons();
-    },[]);
 
     if (loading) {
         return <p>Loading weapons...</p>;
@@ -62,14 +41,16 @@ function Armoury() {
     return (
         <>
             <WeaponAddModal
+                editingWeapon={null}
+                onAdd={addWeapon}
                 show={showModal}
                 setShow={setShowModal}
-                onAdd={addWeapon}
             />
             <div className="parchment">
+                {saveError && <p className="form-error">{saveError}</p>}
                 <button className="btn" onClick={() => setShowModal(true)}>Add new weapon</button>
                 <ArmouryTable
-                    weapons={weapons}
+                    weapons={weapons ?? []}
                 /> 
                 <span className="blood" aria-hidden="true"
                     style={{ "--x": "90%", "--y": "92%", "--size": "130px" } as React.CSSProperties}

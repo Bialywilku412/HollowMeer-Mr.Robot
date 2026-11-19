@@ -44,37 +44,6 @@ namespace Hollowmeer.Api.Migrations
                     b.ToTable("Beasts");
                 });
 
-            modelBuilder.Entity("Hollowmeer.Api.Models.Region", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Regions");
-                });
-
-            modelBuilder.Entity("Hollowmeer.Api.Models.Beast", b =>
-                {
-                    b.HasOne("Hollowmeer.Api.Models.Region", "Region")
-                        .WithMany("Beasts")
-                        .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Region");
-                });
-
-            modelBuilder.Entity("Hollowmeer.Api.Models.Region", b =>
-                {
-                    b.Navigation("Beasts");
-                });
-
             modelBuilder.Entity("Hollowmeer.Api.Models.Quest", b =>
                 {
                     b.Property<int>("Id")
@@ -99,6 +68,128 @@ namespace Hollowmeer.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Quests");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.Region", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Regions");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.Weapon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("WeaponConditionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("WeaponTypeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isDangerous")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WeaponConditionId");
+
+                    b.HasIndex("WeaponTypeId");
+
+                    b.ToTable("Weapons");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.WeaponCondition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WeaponConditions");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.WeaponType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WeaponTypes");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.Beast", b =>
+                {
+                    b.HasOne("Hollowmeer.Api.Models.Region", "Region")
+                        .WithMany("Beasts")
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Region");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.Weapon", b =>
+                {
+                    b.HasOne("Hollowmeer.Api.Models.WeaponCondition", "WeaponCondition")
+                        .WithMany("Weapons")
+                        .HasForeignKey("WeaponConditionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Hollowmeer.Api.Models.WeaponType", "WeaponType")
+                        .WithMany("Weapons")
+                        .HasForeignKey("WeaponTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("WeaponCondition");
+
+                    b.Navigation("WeaponType");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.Region", b =>
+                {
+                    b.Navigation("Beasts");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.WeaponCondition", b =>
+                {
+                    b.Navigation("Weapons");
+                });
+
+            modelBuilder.Entity("Hollowmeer.Api.Models.WeaponType", b =>
+                {
+                    b.Navigation("Weapons");
                 });
 #pragma warning restore 612, 618
         }

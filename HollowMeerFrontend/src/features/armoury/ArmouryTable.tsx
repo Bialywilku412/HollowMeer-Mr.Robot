@@ -1,4 +1,4 @@
-import { type Weapon } from "./weapons";
+import type { Weapon } from "../../types/Weapon";
 import ArmouryRow from "./ArmouryTableRow";
 
 type WeaponListProps = {

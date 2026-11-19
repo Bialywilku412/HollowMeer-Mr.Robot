@@ -5,7 +5,7 @@ type BeastRowProps = {
     data: Beast
 }
 
-function BeastRow({data: { id, name ,region, imageUrl}}: BeastRowProps)
+function BeastRow({data: { id, name, region, imageUrl }}: BeastRowProps)
 {
     const navigate = useNavigate();
 

@@ -1,74 +1,105 @@
-import type { Weapon } from "./weapons";
+import type { WeaponData } from "../../api/weapons";
+import type { Weapon } from "../../types/Weapon";
+import * as weaponTypesApi from "../../api/weaponTypes";
+import * as weaponConditionsApi from "../../api/weaponConditions";
+import { useFetch } from "../../hooks/useFetch";
 import { useState, type FormEvent } from "react";
 
 type WeaponFormProps = {
-    onAdd: (weapon: Omit<Weapon, "id">) => void
-    setShow: (show: boolean) => void
+    editingWeapon: Weapon | null;
+    onAdd?: (data: WeaponData)  => void;
+    onUpdate?: (id: number, data: WeaponData) => void;
+    setShow: (show: boolean) => void;
 }
 
-export function ArmouryWeaponForm({ setShow, onAdd } : WeaponFormProps){
-    const [newWeapon, setNewWeapon] = useState<Omit<Weapon, "id">>({
-        name: "",
-        type: "",
-        condition: "",
-        isDangerous: false,
-        note: ""
-    })
+export function ArmouryWeaponForm({ editingWeapon, onAdd, onUpdate, setShow } : WeaponFormProps){
+    const [name, setName] = useState(editingWeapon?.name ?? "");
+    const [weaponTypeId, setWeaponTypeId] = useState(editingWeapon?.weaponType.id ?? 0,);
+    const [weaponConditionId, setWeaponConditionId] = useState(editingWeapon?.weaponCondition.id ?? 0,);
+    const [isDangerous, setIsDangerous] = useState(editingWeapon?.isDangerous ?? false);
+    const [note, setNote] = useState(editingWeapon?.note ?? "");
+    const { data: weaponTypes } = useFetch(weaponTypesApi.getAll, []);
+    const { data: weaponConditions } = useFetch(weaponConditionsApi.getAll, []);
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault();
-        onAdd(newWeapon);
-        setShow(false);
+        if (name.trim() === "") {
+            return;
+        }
+        const data: WeaponData = { name, weaponTypeId, weaponConditionId, isDangerous, note };
+        if (editingWeapon) {
+            onUpdate?.(editingWeapon.id, data);
+        } else {
+            onAdd?.(data);
+        }
+        setName("");
+        setWeaponTypeId(0);
+        setWeaponConditionId(0);
+        setIsDangerous(false);
+        setNote("");
     }
     
     return(
         <>
             <form onSubmit={handleSubmit} className="add-form">
+                <h2>{editingWeapon ? "Edit weapon" : "Add weapon"}</h2>
                 <label> Weapon Name:
                     <input
                         type="text"
                         className="item-form"
-                        value={newWeapon.name}
-                        onChange={(e) => setNewWeapon({ ...newWeapon, name: e.target.value })}
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
                     />
                 </label>
                 <label> Weapon Type:
-                    <input
-                        type="text"
+                    <select
                         className="item-form"
-                        value={newWeapon.type}
-                        onChange={(e) => setNewWeapon({ ...newWeapon, type: e.target.value })}
-                    />
+                        value={weaponTypeId}
+                        onChange={(event) => setWeaponTypeId(Number(event.target.value))}
+                    >
+                        <option value={0}>Choose a weapon type</option>
+                        {(weaponTypes ?? []).map((weaponType) => (
+                            <option key={weaponType.id} value={weaponType.id}>
+                                {weaponType.name}
+                            </option>
+                        ))}
+                    </select>
                 </label>
                 <label> Weapon Condition:
-                    <input
-                        type="text"
+                    <select
                         className="item-form"
-                        value={newWeapon.condition}
-                        onChange={(e) => setNewWeapon({ ...newWeapon, condition: e.target.value })}
-                    />
+                        value={weaponConditionId}
+                        onChange={(event) => setWeaponConditionId(Number(event.target.value))}
+                    >
+                        <option value={0}>Choose a weapon condition</option>
+                        {(weaponConditions ?? []).map((weaponCondition) => (
+                            <option key={weaponCondition.id} value={weaponCondition.id}>
+                                {weaponCondition.name}
+                            </option>
+                        ))}
+                    </select>
                 </label>
                 <label> Dangerous?
                     <input
                         type="checkbox"
                         className="item-form"
-                        checked={newWeapon.isDangerous}
-                        onChange={(e) => setNewWeapon({ ...newWeapon, isDangerous: e.target.checked })}
+                        checked={isDangerous}
+                        onChange={(event) => setIsDangerous(event.target.checked)}
                     />
                 </label>
                 <label> Note:
                     <input
                         type="text"
                         className="item-form"
-                        value={newWeapon.note}
-                        onChange={(e) => setNewWeapon({ ...newWeapon, note: e.target.value })}
+                        value={note}
+                        onChange={(event) => setNote(event.target.value)}
                     />
                 </label>
                 <button 
                     type="submit"
                     className="btn btn--seal"
                 >
-                    add
+                    {editingWeapon ? "Save" : "Add"}
                 </button>
             </form>
         </>

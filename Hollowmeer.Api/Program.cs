@@ -13,6 +13,10 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IBeastService, BeastService>();
 builder.Services.AddScoped<IRegionService, RegionService>();
 builder.Services.AddScoped<IQuestService, QuestService>();
+builder.Services.AddScoped<IWeaponService, WeaponService>();
+builder.Services.AddScoped<IWeaponTypeService, WeaponTypeService>();
+builder.Services.AddScoped<IWeaponConditionService, WeaponConditionService>();
+
 
 builder.Services.AddControllers();
 builder.Services.AddProblemDetails();

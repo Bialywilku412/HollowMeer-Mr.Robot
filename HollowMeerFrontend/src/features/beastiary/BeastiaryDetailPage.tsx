@@ -1,13 +1,9 @@
-import { Link, useNavigate, useParams } from "react-router";
-import { useFetch } from "../../hooks/useFetch";
-import { type Beast } from "../../types/Beast";
-import { type BeastData } from "../../api/beasts";
-import BeastAddModal from "./BeastiaryAddModal";
-import * as beastsApi from "../../api/beasts";
-import "../armoury/Armoury.css";
 import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router";
+import { type BeastData } from "../../api/beasts";
 import { useBeast } from "./useBeast";
-
+import BeastAddModal from "./BeastiaryAddModal";
+import "../armoury/Armoury.css";
 
 function BeastiaryDetailPage()
 {

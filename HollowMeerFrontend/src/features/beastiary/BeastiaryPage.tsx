@@ -1,12 +1,9 @@
-import {useState } from "react";
-import type { Beast } from "../../types/Beast";
+import { useState } from "react";
 import type { BeastData } from "../../api/beasts";
 import BeastiaryTable from "./BeastiaryTabel";
 import BeastAddModal from "./BeastiaryAddModal";
-import * as beastsApi from "../../api/beasts";
-import "../armoury/Armoury.css";
-import { useFetch } from "../../hooks/useFetch";
 import { useBeasts } from "./useBeasts";
+import "../armoury/Armoury.css";
 
 function BeastiaryPage() {
     const {

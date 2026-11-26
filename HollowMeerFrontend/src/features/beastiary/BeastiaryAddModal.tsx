@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { BeastAddForm } from "./BeastiaryAddForm";
 import type { Beast } from "../../types/Beast";
-import "../armoury/Armoury.css"
 import type { BeastData } from "../../api/beasts";
+import "../armoury/Armoury.css"
 
 type BeastModalProps = {
     editingBeast: Beast | null;

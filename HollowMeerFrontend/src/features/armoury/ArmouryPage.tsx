@@ -1,33 +1,27 @@
-import { useEffect, useState } from "react";
-import ArmouryTable from "./ArmouryTable";
-import type { Weapon } from "../../types/Weapon";
-import type { WeaponData } from "../../api/weapons";
-import * as weaponsApi from "../../api/weapons";
-import WeaponAddModal from "./ArmouryWeaponAddModal";
-import { useFetch } from "../../hooks/useFetch";
 
-function Armoury() {
+import ArmouryTable from "./ArmouryTable";
+import type { WeaponData } from "../../api/weapons";
+import WeaponAddModal from "./ArmouryWeaponAddModal";
+import { useWeapons } from "./useWeapons";
+import { useState } from "react";
+
+export function Armoury() {
 
     const {
-            data: weapons,
-            loading,
-            error,
-            setData: setWeapons,
-        } = useFetch(weaponsApi.getAll, []);
+        weapons,
+        loading,
+        error,
+        saveError,
+        search,
+        setSearch,
+        addWeapon,
+    } = useWeapons();
     const [showModal, setShowModal] = useState(false);
-    const [saveError, setSaveError] = useState<string | null>(null);
 
-    async function addWeapon(data: WeaponData) {
-        try {
-            const created = await weaponsApi.create(data);
-            setWeapons([...(weapons ?? []), created]);
-            setSaveError(null);
-            setShowModal(false);
-        } catch (err) {
-            setSaveError(
-                err instanceof Error ? err.message : "Could not save the weapon.",
-            );
-        }
+    async function handleAdd(data: WeaponData) {
+        const response = await addWeapon(data);
+        if (response) setShowModal(false);
+        return response;
     }
 
     if (loading) {
@@ -42,11 +36,17 @@ function Armoury() {
         <>
             <WeaponAddModal
                 editingWeapon={null}
-                onAdd={addWeapon}
+                onSave={handleAdd}
                 show={showModal}
                 setShow={setShowModal}
             />
             <div className="parchment">
+                <input
+                    type="search"
+                    placeholder="Search weapons..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
                 {saveError && <p className="form-error">{saveError}</p>}
                 <button className="btn" onClick={() => setShowModal(true)}>Add new weapon</button>
                 <ArmouryTable

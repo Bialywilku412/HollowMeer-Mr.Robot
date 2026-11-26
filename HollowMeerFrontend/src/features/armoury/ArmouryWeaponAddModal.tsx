@@ -6,13 +6,12 @@ import type { WeaponData } from "../../api/weapons";
 
 type WeaponModalProps = {
     editingWeapon: Weapon | null;
-    onAdd?: (data: WeaponData) => void;
-    onUpdate?: (id: number, data: WeaponData) => void;
+    onSave: (data: WeaponData) => Promise<boolean>;
     setShow: (show: boolean) => void;
     show: boolean;
 }
 
-export default function WeaponAddModal({ editingWeapon, onAdd, onUpdate, setShow, show} : WeaponModalProps) {
+export default function WeaponAddModal({ editingWeapon, onSave, setShow, show} : WeaponModalProps) {
     const modalRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -26,13 +25,11 @@ export default function WeaponAddModal({ editingWeapon, onAdd, onUpdate, setShow
                     }}
                 >
                     <div className="weapon-modal parchment" ref={modalRef}>
-                        <h1>Adding weapon</h1>
+                        <h1>{editingWeapon ? "Editing weapon" : "Adding weapon"}</h1>
                         <div className="weapon-modal-form">
                             <ArmouryWeaponForm
                                 editingWeapon={editingWeapon}
-                                onAdd={onAdd}
-                                onUpdate={onUpdate}
-                                setShow={setShow}
+                                onSave={onSave}
                             />
                         </div>
                         <button className="btn btn--ghost" onClick={() => setShow(false)}> close </button>

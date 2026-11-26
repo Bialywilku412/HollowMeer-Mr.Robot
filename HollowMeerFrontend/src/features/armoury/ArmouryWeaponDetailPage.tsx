@@ -1,49 +1,34 @@
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
-import * as weaponsApi from "../../api/weapons";
 import { type WeaponData } from "../../api/weapons";
-import { useFetch } from "../../hooks/useFetch";
-import "./Armoury.css"
 import WeaponAddModal from "./ArmouryWeaponAddModal";
+import { useWeapon } from "./useWeapon";
+import "./Armoury.css"
 
 function ArmouryWeaponDetailPage()
 {
     const { id } = useParams();
     const navigate = useNavigate();
     const {
-            data: weapon,
+            weapon,
             loading,
             error,
-            setData: setWeapon
-        } = useFetch(() => weaponsApi.getById(Number(id)), [id]);
-        const [saveError, setSaveError] = useState<string | null>(null);
-        const [showModal, setShowModal] = useState(false);
+            saveError,
+            updateWeapon,
+            deleteWeapon
+        } = useWeapon(Number(id));
+    const [showModal, setShowModal] = useState(false);
+        
+    async function handleDelete() {
+        const response = await deleteWeapon();
+        if (response) navigate("/armoury");
+    }
 
-   
-    async function updateWeapon(id: number, data: WeaponData) {
-            try {
-                const updated = await weaponsApi.update(id, data);
-                setWeapon(updated);
-                setShowModal(false);
-                setSaveError(null);
-            } catch (err) {
-                setSaveError(
-                    err instanceof Error ? err.message : "Could not save the weapon.",
-                );
-            }
-        }
-    
-    async function deleteWeapon() {
-           if (!weapon) return;
-           try {
-               await weaponsApi.remove(weapon.id);
-               navigate("/armoury");
-           } catch (err) {
-               setSaveError(
-                   err instanceof Error ? err.message : "Could not delete the weapon.",
-               );
-           }
-       }
+    async function handleUpdate(data: WeaponData) {
+        const response = await updateWeapon(data);
+        if (response) setShowModal(false);
+        return response;
+    }
 
     if (loading) {
         return <p>Loading...</p>
@@ -59,7 +44,7 @@ function ArmouryWeaponDetailPage()
                 show={showModal}
                 setShow={setShowModal}
                 editingWeapon={weapon}
-                onUpdate={updateWeapon}
+                onSave={handleUpdate}
             />
             <div className="parchment">
                 <h2>{weapon.name}</h2>
@@ -72,7 +57,7 @@ function ArmouryWeaponDetailPage()
                 </dl>
                 <div className="detail-actions">
                     <Link className="btn" to="/armoury">Back to weapons</Link>
-                    <button className="btn btn--danger" onClick={deleteWeapon}>delete</button>
+                    <button className="btn btn--danger" onClick={handleDelete}>delete</button>
                     <button className="btn" onClick={() => setShowModal(true)}>Edit</button>
                 </div>
             </div>

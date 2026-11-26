@@ -7,36 +7,47 @@ import { useState, type FormEvent } from "react";
 
 type WeaponFormProps = {
     editingWeapon: Weapon | null;
-    onAdd?: (data: WeaponData)  => void;
-    onUpdate?: (id: number, data: WeaponData) => void;
-    setShow: (show: boolean) => void;
+    onSave: (data: WeaponData) => Promise<boolean>;
 }
 
-export function ArmouryWeaponForm({ editingWeapon, onAdd, onUpdate, setShow } : WeaponFormProps){
+export function ArmouryWeaponForm({ editingWeapon, onSave } : WeaponFormProps){
     const [name, setName] = useState(editingWeapon?.name ?? "");
     const [weaponTypeId, setWeaponTypeId] = useState(editingWeapon?.weaponType.id ?? 0,);
     const [weaponConditionId, setWeaponConditionId] = useState(editingWeapon?.weaponCondition.id ?? 0,);
     const [isDangerous, setIsDangerous] = useState(editingWeapon?.isDangerous ?? false);
     const [note, setNote] = useState(editingWeapon?.note ?? "");
-    const { data: weaponTypes } = useFetch(weaponTypesApi.getAll, []);
-    const { data: weaponConditions } = useFetch(weaponConditionsApi.getAll, []);
+    const [formError, setFormError] = useState<string | null>(null);
+    const [saving, setSaving] = useState(false);
+    const { data: weaponTypes, error: weaponTypesError } = useFetch(weaponTypesApi.getAll, []);
+    const { data: weaponConditions, error: weaponConditionsError } = useFetch(weaponConditionsApi.getAll, []);
 
-    function handleSubmit(event: FormEvent) {
+    async function handleSubmit(event: FormEvent) {
         event.preventDefault();
-        if (name.trim() === "") {
+        if (name.trim() === "" || weaponTypeId === 0 || weaponConditionId === 0) {
+            setFormError("A weapon needs a name, type and condition")
             return;
         }
-        const data: WeaponData = { name, weaponTypeId, weaponConditionId, isDangerous, note };
-        if (editingWeapon) {
-            onUpdate?.(editingWeapon.id, data);
-        } else {
-            onAdd?.(data);
+        
+        setFormError(null);
+        setSaving(true);
+
+        const saved = await onSave({
+            name,
+            weaponTypeId,
+            weaponConditionId,
+            isDangerous,
+            note  
+        });
+
+        setSaving(false);
+
+        if (saved && !editingWeapon) {
+            setName("");
+            setWeaponTypeId(0);
+            setWeaponConditionId(0);
+            setIsDangerous(false);
+            setNote("");
         }
-        setName("");
-        setWeaponTypeId(0);
-        setWeaponConditionId(0);
-        setIsDangerous(false);
-        setNote("");
     }
     
     return(
@@ -64,6 +75,7 @@ export function ArmouryWeaponForm({ editingWeapon, onAdd, onUpdate, setShow } : 
                             </option>
                         ))}
                     </select>
+                    {weaponTypesError && <p>Could not load the types.</p>}
                 </label>
                 <label> Weapon Condition:
                     <select
@@ -78,6 +90,7 @@ export function ArmouryWeaponForm({ editingWeapon, onAdd, onUpdate, setShow } : 
                             </option>
                         ))}
                     </select>
+                    {weaponConditionsError && <p>Could not load the conditions.</p>}
                 </label>
                 <label> Dangerous?
                     <input
@@ -98,9 +111,11 @@ export function ArmouryWeaponForm({ editingWeapon, onAdd, onUpdate, setShow } : 
                 <button 
                     type="submit"
                     className="btn btn--seal"
+                    disabled={saving}
                 >
-                    {editingWeapon ? "Save" : "Add"}
+                    {saving ? "Saving..." : editingWeapon ? "Save" : "Add"}
                 </button>
+                {formError && <p>{formError}</p>}
             </form>
         </>
     );

@@ -39,8 +39,11 @@ function toRequestBody(data: WeaponData) {
     }
 }
 
-export async function getAll(): Promise<Weapon[]> {
-    const response = await fetch(`${baseUrl}/api/weapons`);
+export async function getAll(search?: string): Promise<Weapon[]> {
+    const url = search
+        ? `${baseUrl}/api/weapons?search=${encodeURIComponent(search)}`
+        : `${baseUrl}/api/weapons`;
+    const response = await fetch(url);
     if(!response.ok) {
         throw await errorFromResponse(response);
     }

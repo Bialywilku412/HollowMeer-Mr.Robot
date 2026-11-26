@@ -6,13 +6,12 @@ import type { BeastData } from "../../api/beasts";
 
 type BeastModalProps = {
     editingBeast: Beast | null;
-    onAdd?: (data: BeastData) => void;
-    onUpdate?: (id: number, data: BeastData) => void;
+    onSave: (data: BeastData) => Promise<boolean>;
     setShow: (show: boolean) => void;
     show: boolean;
 }
 
-export default function BeastAddModal({ editingBeast, onAdd, onUpdate, show, setShow} : BeastModalProps) {
+export default function BeastAddModal({ editingBeast, onSave, show, setShow} : BeastModalProps) {
     const modalRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -29,9 +28,7 @@ export default function BeastAddModal({ editingBeast, onAdd, onUpdate, show, set
                         <div className="weapon-modal-form">
                             <BeastAddForm
                                 editingBeast={editingBeast}
-                                onAdd={onAdd}
-                                onUpdate={onUpdate}
-                                setShow={setShow}
+                                onSave={onSave}
                             />
                         </div>
                         <button className="btn btn--ghost" onClick={() => setShow(false)}> close </button>

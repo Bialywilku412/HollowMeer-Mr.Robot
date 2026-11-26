@@ -23,27 +23,23 @@ public class BeastService : IBeastService
             : await _beasts.FindAsync(
                 b => b.Name.ToLower().Contains(search.ToLower()));
 
-        return beasts.Select(ToDto).ToList();
+        return beasts.Select(BeastMapper.ToDto).ToList();
     }
 
     public async Task<BeastDto?> GetByIdAsync(int id)
     {
         var beast = await _beasts.GetByIdAsync(id, b => b.Region);
-        return beast is null ? null : ToDto(beast);
+        return beast is null ? null : BeastMapper.ToDto(beast);
     }
 
     public async Task<BeastDto> CreateAsync(CreateBeastDto dto)
     {
-        var region = await _regions.GetByIdAsync(dto.RegionId);
-        if (region is null)
-        {
-            throw new BadRequestException($"Region with ID {dto.RegionId} does not exist.");
-        }
+        var region = await GetRequiredRegionAsync(dto.RegionId);
 
         var beast = new Beast
         {
             Name = dto.Name,
-            RegionId = dto.RegionId,
+            Region = region,
             Description = dto.Description,
             ImageUrl = dto.ImageUrl
         };
@@ -51,7 +47,7 @@ public class BeastService : IBeastService
         _beasts.Add(beast);
         await _beasts.SaveChangesAsync();
 
-        return ToDto(beast);
+        return BeastMapper.ToDto(beast);
     }
 
     public async Task<BeastDto?> UpdateAsync(int id, UpdateBeastDto dto)
@@ -59,19 +55,15 @@ public class BeastService : IBeastService
         var beast = await _beasts.GetByIdAsync(id);
         if (beast is null) return null;
 
-        var region = await _regions.GetByIdAsync(dto.RegionId);
-        if (region is null)
-        {
-            throw new BadRequestException($"Region with ID {dto.RegionId} does not exist.");
-        }
+        var region = await GetRequiredRegionAsync(dto.RegionId);
 
         beast.Name = dto.Name;
-        beast.RegionId = dto.RegionId;
+        beast.Region = region;
         beast.Description = dto.Description;
         beast.ImageUrl = dto.ImageUrl;
         await _beasts.SaveChangesAsync();
 
-        return ToDto(beast);
+        return BeastMapper.ToDto(beast);
     }
 
     public async Task<bool> DeleteAsync(int id)
@@ -85,17 +77,11 @@ public class BeastService : IBeastService
         return true;
     }
 
-
-    private static BeastDto ToDto(Beast beast) => new()
+    private async Task<Region> GetRequiredRegionAsync(int regionId)
     {
-        Id = beast.Id,
-        Name = beast.Name,
-        Region = new RegionDto
-        {
-            Id = beast.Region.Id,
-            Name = beast.Region.Name
-        },
-        Description = beast.Description,
-        ImageUrl = beast.ImageUrl
-    };
+        var region = await _regions.GetByIdAsync(regionId);
+        if (region is null)
+            throw new BadRequestException($"There is no region with id {regionId}");
+        return region;
+    }
 }

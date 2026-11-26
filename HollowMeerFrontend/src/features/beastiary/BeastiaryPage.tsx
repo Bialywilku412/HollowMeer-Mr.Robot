@@ -6,28 +6,24 @@ import BeastAddModal from "./BeastiaryAddModal";
 import * as beastsApi from "../../api/beasts";
 import "../armoury/Armoury.css";
 import { useFetch } from "../../hooks/useFetch";
+import { useBeasts } from "./useBeasts";
 
 function BeastiaryPage() {
     const {
-            data: beasts,
-            loading,
-            error,
-            setData: setBeasts,
-        } = useFetch(beastsApi.getAll, []);
+        beasts,
+        loading,
+        error,
+        saveError,
+        search,
+        setSearch,
+        addBeast,
+    } = useBeasts();
     const [showModal, setShowModal] = useState(false);
-    const [saveError, setSaveError] = useState<string | null>(null);
 
-    async function addBeast(data: BeastData) {
-        try {
-            const created = await beastsApi.create(data)
-            setBeasts([...(beasts ?? []), created]);
-            setSaveError(null);
-            setShowModal(false);
-        } catch (err) {
-            setSaveError(
-                err instanceof Error ? err.message : "Could not save the beast.",
-            );
-        }
+    async function handleAdd(data: BeastData) {
+        const response = await addBeast(data);
+        if (response) setShowModal(false);
+        return response;
     }
 
     if (loading) {
@@ -41,7 +37,7 @@ function BeastiaryPage() {
         <>
             <BeastAddModal
                 editingBeast={null}
-                onAdd={addBeast}
+                onSave={handleAdd}
                 show={showModal}
                 setShow={setShowModal}
             />

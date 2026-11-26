@@ -90,11 +90,11 @@ public class WeaponService : IWeaponService
         return weaponType;
     }
 
-    private async Task<WeaponCondition> GetRequiredWeaponConditionAsync(int WeaponConditionId)
+    private async Task<WeaponCondition> GetRequiredWeaponConditionAsync(int weaponConditionId)
     {
-        var weaponCondition = await _weaponConditions.GetByIdAsync(WeaponConditionId);
+        var weaponCondition = await _weaponConditions.GetByIdAsync(weaponConditionId);
         if (weaponCondition is null)
-            throw new BadRequestException($"There is no weapon condition with id {WeaponConditionId}");
+            throw new BadRequestException($"There is no weapon condition with id {weaponConditionId}");
         return weaponCondition;
     }
 }

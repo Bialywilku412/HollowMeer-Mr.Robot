@@ -6,33 +6,42 @@ import { useState, type FormEvent } from "react";
 
 type BeastFormProps = {
     editingBeast: Beast | null;
-    onAdd?: (data: BeastData)  => void;
-    onUpdate?: (id: number, data: BeastData) => void;
-    setShow: (show: boolean) => void;
+    onSave: (data: BeastData) => Promise<boolean>;
 }
 
-export function BeastAddForm({ setShow, onAdd, editingBeast, onUpdate} : BeastFormProps){
+export function BeastAddForm({ editingBeast, onSave} : BeastFormProps){
     const [name, setName] = useState(editingBeast?.name ?? "");
     const [regionId, setRegionId] = useState(editingBeast?.region.id ?? 0,);
     const [description, setDescription] = useState(editingBeast?.description ?? "");
     const [imageUrl, setImageUrl] = useState(editingBeast?.imageUrl ?? "");
+    const [formError, setFormError] = useState<string | null>(null);
+    const [saving, setSaving] = useState(false);
     const { data: regions } = useFetch(regionsApi.getAll, []);
 
-    function handleSubmit(event: FormEvent) {
+    async function handleSubmit(event: FormEvent) {
         event.preventDefault();
-        if (name.trim() === "") {
+        if (name.trim() === "" || regionId === 0) {
+            setFormError("A beast needs a name and region")
             return;
         }
-        const data: BeastData = { name, regionId, description, imageUrl };
-        if (editingBeast) {
-            onUpdate?.(editingBeast.id, data);
-        } else {
-            onAdd?.(data);
+
+        setFormError(null);
+        setSaving(true);
+
+        const saved = await onSave({
+            name,
+            regionId,
+            description,
+            imageUrl
+        });
+
+        setSaving(false);
+        if (saved && !editingBeast) {
+            setName("");
+            setRegionId(0);
+            setDescription("");
+            setImageUrl("");
         }
-        setName("");
-        setRegionId(0);
-        setDescription("");
-        setImageUrl("");
     }
     
     return(

@@ -35,8 +35,11 @@ function toRequestBody(data: BeastData) {
     }
 }
 
-export async function getAll(): Promise<Beast[]> {
-    const response = await fetch(`${baseUrl}/api/beasts`);
+export async function getAll(search?: string): Promise<Beast[]> {
+    const url = search
+        ? `${baseUrl}/api/beasts?search=${encodeURIComponent(search)}`
+        : `${baseUrl}/api/beasts`;
+    const response = await fetch(url);
     if(!response.ok) {
         throw await errorFromResponse(response);
     }

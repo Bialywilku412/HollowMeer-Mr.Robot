@@ -1,49 +1,33 @@
-import { Link, useNavigate, useParams } from "react-router";
-import { useFetch } from "../../hooks/useFetch";
-import { type Beast } from "../../types/Beast";
-import { type BeastData } from "../../api/beasts";
-import BeastAddModal from "./BeastiaryAddModal";
-import * as beastsApi from "../../api/beasts";
-import "../armoury/Armoury.css";
 import { useState } from "react";
-
+import { Link, useNavigate, useParams } from "react-router";
+import { type BeastData } from "../../api/beasts";
+import { useBeast } from "./useBeast";
+import BeastAddModal from "./BeastiaryAddModal";
+import "../armoury/Armoury.css";
 
 function BeastiaryDetailPage()
 {
     const { id } = useParams();
     const navigate = useNavigate();
     const {
-        data: beast,
-        loading,
-        error,
-        setData: setBeast
-    } = useFetch(() => beastsApi.getById(Number(id)), [id]);
-    const [saveError, setSaveError] = useState<string | null>(null);
+            beast,
+            loading,
+            error,
+            saveError,
+            updateBeast,
+            deleteBeast
+        } = useBeast(Number(id));
     const [showModal, setShowModal] = useState(false);
 
-    async function updateBeast(id: number, data: BeastData) {
-        try {
-            const updated = await beastsApi.update(id, data);
-            setBeast(updated);
-            setShowModal(false);
-            setSaveError(null);
-        } catch (err) {
-            setSaveError(
-                err instanceof Error ? err.message : "Could not save the beast.",
-            );
-        }
+   async function handleDelete() {
+        const response = await deleteBeast();
+        if (response) navigate("/beastiary");
     }
-
-    async function deleteBeast() {
-        if (!beast) return;
-        try {
-            await beastsApi.remove(beast.id);
-            navigate("/beastiary");
-        } catch (err) {
-            setSaveError(
-                err instanceof Error ? err.message : "Could not delete the beast.",
-            );
-        }
+   
+    async function handleUpdate(data: BeastData) {
+        const response = await updateBeast(data);
+        if (response) setShowModal(false);
+        return response;
     }
 
     if (loading) {
@@ -60,7 +44,7 @@ function BeastiaryDetailPage()
                 show={showModal}
                 setShow={setShowModal}
                 editingBeast={beast}
-                onUpdate={updateBeast}
+                onSave={handleUpdate}
             />
             <div className="parchment">
                 <h2>{beast.name}</h2>
@@ -74,7 +58,7 @@ function BeastiaryDetailPage()
                     )}
                 <div className="detail-actions">
                     <Link className="btn" to="/beastiary">Back to beastiary</Link>
-                    <button className="btn btn--danger" onClick={deleteBeast}>delete</button>
+                    <button className="btn btn--danger" onClick={handleDelete}>delete</button>
                     <button className="btn" onClick={() => setShowModal(true)}>Edit</button>
                 </div>
             </div>
